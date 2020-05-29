@@ -1,0 +1,445 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>MIME typing</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="up" href="mime-registry.html" title="MIME Registry">
+<link rel="prev" href="mime-registry.html" title="MIME Registry">
+<link rel="next" href="gnome-vfs-20-gnome-vfs-mime-utils.html" title="gnome-vfs-mime-utils">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="about.html" title="Introduction to GnomeVFS">
+<link rel="chapter" href="data-types.html" title="Basic Data Types">
+<link rel="chapter" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<link rel="chapter" href="gnome-vfs-directory-ops.html" title="Directory-Specific Operations">
+<link rel="chapter" href="gnome-vfs-file-and-dirs-ops.html" title="Advanced File/Directory Operations">
+<link rel="chapter" href="gnome-vfs-file-async-ops.html" title="Asynchronous Operations">
+<link rel="chapter" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="chapter" href="networking.html" title="Networking">
+<link rel="chapter" href="mime-registry.html" title="MIME Registry">
+<link rel="chapter" href="modules.html" title="Filesystem Modules">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="mime-registry.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="mime-registry.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GnomeVFS - Filesystem Abstraction library</th>
+<td><a accesskey="n" href="gnome-vfs-20-gnome-vfs-mime-utils.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2699008" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2699326" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-vfs-20-gnome-vfs-mime"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2699008"></a><span class="refentrytitle">MIME typing</span>
+</h2>
+<p>MIME typing &#8212; functions to get a mime-type for a file using its name or its content</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-mime-type-from-name">gnome_vfs_mime_type_from_name</a>       (const char *filename);
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-mime-type-from-name-or-default">gnome_vfs_mime_type_from_name_or_default</a>
+                                                        (const char *filename,
+                                                         const char *defaultv);
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-mime-type-common">gnome_vfs_get_mime_type_common</a>      (<a href="gnome-vfs-20-gnome-vfs-uri.html#GnomeVFSURI">GnomeVFSURI</a> *uri);
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-mime-type-from-uri">gnome_vfs_get_mime_type_from_uri</a>    (<a href="gnome-vfs-20-gnome-vfs-uri.html#GnomeVFSURI">GnomeVFSURI</a> *uri);
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-mime-type-from-file-data">gnome_vfs_get_mime_type_from_file_data</a>
+                                                        (<a href="gnome-vfs-20-gnome-vfs-uri.html#GnomeVFSURI">GnomeVFSURI</a> *uri);
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-file-mime-type-fast">gnome_vfs_get_file_mime_type_fast</a>   (const char *path,
+                                                         const struct stat *optional_stat_info);
+const char*         <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-file-mime-type">gnome_vfs_get_file_mime_type</a>        (const char *path,
+                                                         const struct stat *optional_stat_info,
+                                                         gboolean suffix_only);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-mime-type-is-supertype">gnome_vfs_mime_type_is_supertype</a>    (const char *mime_type);
+char*               <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-supertype-from-mime-type">gnome_vfs_get_supertype_from_mime_type</a>
+                                                        (const char *mime_type);
+void                <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-mime-info-cache-reload">gnome_vfs_mime_info_cache_reload</a>    (const char *dir);
+void                <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-mime-reload">gnome_vfs_mime_reload</a>               (void);
+void                <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-mime-shutdown">gnome_vfs_mime_shutdown</a>             (void);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2699326"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2699340"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2699350"></a><h3>
+<a name="gnome-vfs-mime-type-from-name"></a>gnome_vfs_mime_type_from_name ()</h3>
+<a class="indexterm" name="id2699366"></a><pre class="programlisting">const char*         gnome_vfs_mime_type_from_name       (const char *filename);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">gnome_vfs_mime_type_from_name</code> is deprecated and should not be used in newly-written code. This function is deprecated, use
+<a href="gnome-vfs-20-gnome-vfs-mime-utils.html#gnome-vfs-get-mime-type-for-name"><code class="function">gnome_vfs_get_mime_type_for_name()</code></a> instead.</p>
+</div>
+<p>
+Determine the mime type for <em class="parameter"><code>filename</code></em>.
+</p>
+<p>
+Returns:</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>filename</code></em>&#160;:</span></td>
+<td> a filename (the file does not necessarily exist).
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type for this filename. Will return
+<a href="gnome-vfs-20-gnome-vfs-mime-utils.html#GNOME-VFS-MIME-TYPE-UNKNOWN:CAPS"><code class="literal">GNOME_VFS_MIME_TYPE_UNKNOWN</code></a> if mime-type could not be found.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2699478"></a><h3>
+<a name="gnome-vfs-mime-type-from-name-or-default"></a>gnome_vfs_mime_type_from_name_or_default ()</h3>
+<a class="indexterm" name="id2699492"></a><pre class="programlisting">const char*         gnome_vfs_mime_type_from_name_or_default
+                                                        (const char *filename,
+                                                         const char *defaultv);</pre>
+<p>
+This routine tries to determine the mime-type of the filename
+only by looking at the filename from the GNOME database of mime-types.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>filename</code></em>&#160;:</span></td>
+<td> a filename (the file does not necessarily exist).
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>defaultv</code></em>&#160;:</span></td>
+<td> a default value to be returned if no match is found.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type of the <em class="parameter"><code>filename</code></em>.  If no value could be
+determined, it will return <em class="parameter"><code>defaultv</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2699593"></a><h3>
+<a name="gnome-vfs-get-mime-type-common"></a>gnome_vfs_get_mime_type_common ()</h3>
+<a class="indexterm" name="id2699607"></a><pre class="programlisting">const char*         gnome_vfs_get_mime_type_common      (<a href="gnome-vfs-20-gnome-vfs-uri.html#GnomeVFSURI">GnomeVFSURI</a> *uri);</pre>
+<p>
+Tries to guess the mime type of the file represented by <em class="parameter"><code>uri</code></em>.
+Favors using the file data to the <em class="parameter"><code>uri</code></em> extension.
+Handles <em class="parameter"><code>uri</code></em> of a non-existent file by falling back
+on returning a type based on the extension. If cant find the mime-type based on the 
+extension also then returns 'application/octet-stream'.
+</p>
+<p>
+FIXME: This function will not necessarily return the same mime type as doing a
+get file info on the text uri.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>uri</code></em>&#160;:</span></td>
+<td> a real file or a non-existent uri.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type for <em class="parameter"><code>uri</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2699702"></a><h3>
+<a name="gnome-vfs-get-mime-type-from-uri"></a>gnome_vfs_get_mime_type_from_uri ()</h3>
+<a class="indexterm" name="id2699715"></a><pre class="programlisting">const char*         gnome_vfs_get_mime_type_from_uri    (<a href="gnome-vfs-20-gnome-vfs-uri.html#GnomeVFSURI">GnomeVFSURI</a> *uri);</pre>
+<p>
+Tries to guess the mime type of the file <em class="parameter"><code>uri</code></em> by
+checking the file name extension. Works on non-existent
+files.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>uri</code></em>&#160;:</span></td>
+<td> a file uri.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type for file at <em class="parameter"><code>uri</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2699790"></a><h3>
+<a name="gnome-vfs-get-mime-type-from-file-data"></a>gnome_vfs_get_mime_type_from_file_data ()</h3>
+<a class="indexterm" name="id2699806"></a><pre class="programlisting">const char*         gnome_vfs_get_mime_type_from_file_data
+                                                        (<a href="gnome-vfs-20-gnome-vfs-uri.html#GnomeVFSURI">GnomeVFSURI</a> *uri);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">gnome_vfs_get_mime_type_from_file_data</code> is deprecated and should not be used in newly-written code. </p>
+</div>
+<p>
+Tries to guess the mime type of the file <em class="parameter"><code>uri</code></em> by
+checking the file data using the magic patterns. Does not handle text files properly.
+</p>
+<p>
+Returns:</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>uri</code></em>&#160;:</span></td>
+<td> a file uri.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type for this filename.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2699893"></a><h3>
+<a name="gnome-vfs-get-file-mime-type-fast"></a>gnome_vfs_get_file_mime_type_fast ()</h3>
+<a class="indexterm" name="id2699908"></a><pre class="programlisting">const char*         gnome_vfs_get_file_mime_type_fast   (const char *path,
+                                                         const struct stat *optional_stat_info);</pre>
+<p>
+Tries to guess the mime type of the file represented by <em class="parameter"><code>path</code></em>.
+It uses extention/name detection first, and if that fails
+it falls back to mime-magic based lookup. This is faster
+than always doing mime-magic but doesn't always produce
+the right answer, so for important decisions 
+you should use <a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-file-mime-type"><code class="function">gnome_vfs_get_file_mime_type()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>path</code></em>&#160;:</span></td>
+<td> path of the file whose mime type is to be found out.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>optional_stat_info</code></em>&#160;:</span></td>
+<td> optional stat buffer.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type for file at <em class="parameter"><code>path</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2700020"></a><h3>
+<a name="gnome-vfs-get-file-mime-type"></a>gnome_vfs_get_file_mime_type ()</h3>
+<a class="indexterm" name="id2700034"></a><pre class="programlisting">const char*         gnome_vfs_get_file_mime_type        (const char *path,
+                                                         const struct stat *optional_stat_info,
+                                                         gboolean suffix_only);</pre>
+<p>
+Tries to guess the mime type of the file represented by <em class="parameter"><code>path</code></em>.
+If <em class="parameter"><code>suffix_only</code></em> is false, uses the mime-magic based lookup first.
+Handles <em class="parameter"><code>path</code></em> of a non-existent file by falling back
+on returning a type based on the extension.
+</p>
+<p>
+If you need a faster, less accurate version, use
+<a href="gnome-vfs-20-gnome-vfs-mime.html#gnome-vfs-get-file-mime-type-fast"><code class="function">gnome_vfs_get_file_mime_type_fast()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>path</code></em>&#160;:</span></td>
+<td> path of a file whose mime type is to be found out.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>optional_stat_info</code></em>&#160;:</span></td>
+<td> optional stat buffer.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>suffix_only</code></em>&#160;:</span></td>
+<td> whether or not to do a magic-based lookup.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the mime-type for file at <em class="parameter"><code>path</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2700184"></a><h3>
+<a name="gnome-vfs-mime-type-is-supertype"></a>gnome_vfs_mime_type_is_supertype ()</h3>
+<a class="indexterm" name="id2700197"></a><pre class="programlisting">gboolean            gnome_vfs_mime_type_is_supertype    (const char *mime_type);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>mime_type</code></em>&#160;:</span></td>
+<td> a const char * identifying a mime type.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> Whether <em class="parameter"><code>mime_type</code></em> is of the form "foo<code class="literal">/</code>*".
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2700270"></a><h3>
+<a name="gnome-vfs-get-supertype-from-mime-type"></a>gnome_vfs_get_supertype_from_mime_type ()</h3>
+<a class="indexterm" name="id2700284"></a><pre class="programlisting">char*               gnome_vfs_get_supertype_from_mime_type
+                                                        (const char *mime_type);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>mime_type</code></em>&#160;:</span></td>
+<td> mime type to get the supertype for.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> The supertype for <em class="parameter"><code>mime_type</code></em>, allocating new memory.
+
+The supertype of an application is computed by removing its
+suffix, and replacing it with "*". Thus, "foo/bar" will be
+converted to "foo<code class="literal">/</code>*".
+
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+If this function is called on a supertype, it will return a copy of the supertype.
+</div>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2700366"></a><h3>
+<a name="gnome-vfs-mime-info-cache-reload"></a>gnome_vfs_mime_info_cache_reload ()</h3>
+<a class="indexterm" name="id2700379"></a><pre class="programlisting">void                gnome_vfs_mime_info_cache_reload    (const char *dir);</pre>
+<p>
+Reload the mime information for the <em class="parameter"><code>dir</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>dir</code></em>&#160;:</span></td>
+<td> directory path which needs reloading.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2700436"></a><h3>
+<a name="gnome-vfs-mime-reload"></a>gnome_vfs_mime_reload ()</h3>
+<a class="indexterm" name="id2700449"></a><pre class="programlisting">void                gnome_vfs_mime_reload               (void);</pre>
+<p>
+Reload the MIME database.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2700474"></a><h3>
+<a name="gnome-vfs-mime-shutdown"></a>gnome_vfs_mime_shutdown ()</h3>
+<a class="indexterm" name="id2700490"></a><pre class="programlisting">void                gnome_vfs_mime_shutdown             (void);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">gnome_vfs_mime_shutdown</code> is deprecated and should not be used in newly-written code. This function doesn't have to be called as the
+operating system automatically cleans up resources when exiting.
+</p>
+<p>
+Unload the MIME database from memory.</p>
+</div>
+<p>
+</p>
+<p>
+
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

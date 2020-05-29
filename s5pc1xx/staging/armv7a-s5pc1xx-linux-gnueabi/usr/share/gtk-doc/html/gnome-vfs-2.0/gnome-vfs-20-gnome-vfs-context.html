@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>GnomeVFSContext</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="up" href="modules.html" title="Filesystem Modules">
+<link rel="prev" href="gnome-vfs-20-gnome-vfs-module-callback-module-api.html" title="gnome-vfs-module-callback-module-api">
+<link rel="next" href="gnome-vfs-20-gnome-vfs-transform.html" title="gnome-vfs-transform">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="about.html" title="Introduction to GnomeVFS">
+<link rel="chapter" href="data-types.html" title="Basic Data Types">
+<link rel="chapter" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<link rel="chapter" href="gnome-vfs-directory-ops.html" title="Directory-Specific Operations">
+<link rel="chapter" href="gnome-vfs-file-and-dirs-ops.html" title="Advanced File/Directory Operations">
+<link rel="chapter" href="gnome-vfs-file-async-ops.html" title="Asynchronous Operations">
+<link rel="chapter" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="chapter" href="networking.html" title="Networking">
+<link rel="chapter" href="mime-registry.html" title="MIME Registry">
+<link rel="chapter" href="modules.html" title="Filesystem Modules">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-vfs-20-gnome-vfs-module-callback-module-api.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="modules.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GnomeVFS - Filesystem Abstraction library</th>
+<td><a accesskey="n" href="gnome-vfs-20-gnome-vfs-transform.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2742792" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2742914" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-vfs-20-gnome-vfs-context"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2742792"></a><span class="refentrytitle">GnomeVFSContext</span>
+</h2>
+<p>GnomeVFSContext &#8212; 
+contexts allows modules to track thread usage and cancellation properly</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+<a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a>*    <a href="gnome-vfs-20-gnome-vfs-context.html#gnome-vfs-context-new">gnome_vfs_context_new</a>               (void);
+void                <a href="gnome-vfs-20-gnome-vfs-context.html#gnome-vfs-context-free">gnome_vfs_context_free</a>              (<a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a> *ctx);
+<a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a>* <a href="gnome-vfs-20-gnome-vfs-context.html#gnome-vfs-context-get-cancellation">gnome_vfs_context_get_cancellation</a>
+                                                        (const <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a> *ctx);
+#define             <a href="gnome-vfs-20-gnome-vfs-context.html#gnome-vfs-context-check-cancellation">gnome_vfs_context_check_cancellation</a>(x)
+const <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a>* <a href="gnome-vfs-20-gnome-vfs-context.html#gnome-vfs-context-peek-current">gnome_vfs_context_peek_current</a>   (void);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-context.html#gnome-vfs-context-check-cancellation-current">gnome_vfs_context_check_cancellation_current</a>
+                                                        (void);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2742914"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2742929"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2742939"></a><h3>
+<a name="gnome-vfs-context-new"></a>gnome_vfs_context_new ()</h3>
+<a class="indexterm" name="id2742952"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a>*    gnome_vfs_context_new               (void);</pre>
+<p>
+Creates a new context and cancellation object. Must be called
+from the main glib event loop.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext"><span class="type">GnomeVFSContext</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2743002"></a><h3>
+<a name="gnome-vfs-context-free"></a>gnome_vfs_context_free ()</h3>
+<a class="indexterm" name="id2743015"></a><pre class="programlisting">void                gnome_vfs_context_free              (<a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a> *ctx);</pre>
+<p>
+Free <em class="parameter"><code>ctx</code></em> and destroy the associated <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation"><span class="type">GnomeVFSCancellation</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>ctx</code></em>&#160;:</span></td>
+<td> context to be freed.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2743081"></a><h3>
+<a name="gnome-vfs-context-get-cancellation"></a>gnome_vfs_context_get_cancellation ()</h3>
+<a class="indexterm" name="id2743095"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a>* gnome_vfs_context_get_cancellation
+                                                        (const <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a> *ctx);</pre>
+<p>
+Retrieve the <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation"><span class="type">GnomeVFSCancellation</span></a> associated with <em class="parameter"><code>ctx</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>ctx</code></em>&#160;:</span></td>
+<td> context to get the <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation"><span class="type">GnomeVFSCancellation</span></a> from.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <em class="parameter"><code>ctx</code></em> 's <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation"><span class="type">GnomeVFSCancellation</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2743195"></a><h3>
+<a name="gnome-vfs-context-check-cancellation"></a>gnome_vfs_context_check_cancellation()</h3>
+<a class="indexterm" name="id2743209"></a><pre class="programlisting">#define             gnome_vfs_context_check_cancellation(x)</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>x</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2743242"></a><h3>
+<a name="gnome-vfs-context-peek-current"></a>gnome_vfs_context_peek_current ()</h3>
+<a class="indexterm" name="id2743256"></a><pre class="programlisting">const <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext">GnomeVFSContext</a>* gnome_vfs_context_peek_current   (void);</pre>
+<p>
+Get the currently active context. It shouldn't be
+manipulated but can be compared to contexts module
+holds to determine whether they are active.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the currently active <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSContext"><span class="type">GnomeVFSContext</span></a>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2743308"></a><h3>
+<a name="gnome-vfs-context-check-cancellation-current"></a>gnome_vfs_context_check_cancellation_current ()</h3>
+<a class="indexterm" name="id2743323"></a><pre class="programlisting">gboolean            gnome_vfs_context_check_cancellation_current
+                                                        (void);</pre>
+<p>
+Check to see if the currently active context has been cancelled.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if the currently active context has been cancelled, otherwise <code class="literal">FALSE</code>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

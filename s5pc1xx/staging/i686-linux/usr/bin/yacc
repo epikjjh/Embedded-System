@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /opt/s5pc1xx/staging/i686-linux/usr/bin/bison -y "$@"

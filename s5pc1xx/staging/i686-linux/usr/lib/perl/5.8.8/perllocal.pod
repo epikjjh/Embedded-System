@@ -1,0 +1,22 @@
+=head2 Wed Sep 16 11:20:08 2009: C<Module> L<XML::Parser|XML::Parser>
+
+=over 4
+
+=item *
+
+C<installed into: /opt/s5pc1xx/staging/i686-linux/usr/lib/perl/5.8.8>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 2.34>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

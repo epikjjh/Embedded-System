@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>GnomeVFSFileSize</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="up" href="data-types.html" title="Basic Data Types">
+<link rel="prev" href="gnome-vfs-20-gnome-vfs-file-info.html" title="GnomeVFSFileInfo">
+<link rel="next" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="about.html" title="Introduction to GnomeVFS">
+<link rel="chapter" href="data-types.html" title="Basic Data Types">
+<link rel="chapter" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<link rel="chapter" href="gnome-vfs-directory-ops.html" title="Directory-Specific Operations">
+<link rel="chapter" href="gnome-vfs-file-and-dirs-ops.html" title="Advanced File/Directory Operations">
+<link rel="chapter" href="gnome-vfs-file-async-ops.html" title="Asynchronous Operations">
+<link rel="chapter" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="chapter" href="networking.html" title="Networking">
+<link rel="chapter" href="mime-registry.html" title="MIME Registry">
+<link rel="chapter" href="modules.html" title="Filesystem Modules">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-vfs-20-gnome-vfs-file-info.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="data-types.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GnomeVFS - Filesystem Abstraction library</th>
+<td><a accesskey="n" href="gnome-vfs-basic-file-ops.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2594302" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2594359" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-vfs-20-gnome-vfs-file-size"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2594302"></a><span class="refentrytitle">GnomeVFSFileSize</span>
+</h2>
+<p>GnomeVFSFileSize &#8212; Data types used for specifying file sizes and seek positions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+#define             <a href="gnome-vfs-20-gnome-vfs-file-size.html#GNOME-VFS-OFFSET-IS-LONG-LONG:CAPS">GNOME_VFS_OFFSET_IS_LONG_LONG</a>
+#define             <a href="gnome-vfs-20-gnome-vfs-file-size.html#GNOME-VFS-SIZE-FORMAT-STR:CAPS">GNOME_VFS_SIZE_FORMAT_STR</a>
+#define             <a href="gnome-vfs-20-gnome-vfs-file-size.html#GNOME-VFS-OFFSET-FORMAT-STR:CAPS">GNOME_VFS_OFFSET_FORMAT_STR</a>
+typedef             <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a>;
+typedef             <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileOffset">GnomeVFSFileOffset</a>;
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2594359"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2594374"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2594384"></a><h3>
+<a name="GNOME-VFS-OFFSET-IS-LONG-LONG:CAPS"></a>GNOME_VFS_OFFSET_IS_LONG_LONG</h3>
+<a class="indexterm" name="id2594396"></a><pre class="programlisting">#define GNOME_VFS_OFFSET_IS_LONG_LONG
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2594412"></a><h3>
+<a name="GNOME-VFS-SIZE-FORMAT-STR:CAPS"></a>GNOME_VFS_SIZE_FORMAT_STR</h3>
+<a class="indexterm" name="id2594426"></a><pre class="programlisting">#define GNOME_VFS_SIZE_FORMAT_STR G_GUINT64_FORMAT
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2594442"></a><h3>
+<a name="GNOME-VFS-OFFSET-FORMAT-STR:CAPS"></a>GNOME_VFS_OFFSET_FORMAT_STR</h3>
+<a class="indexterm" name="id2594455"></a><pre class="programlisting">#define GNOME_VFS_OFFSET_FORMAT_STR G_GINT64_FORMAT
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2594471"></a><h3>
+<a name="GnomeVFSFileSize"></a>GnomeVFSFileSize</h3>
+<a class="indexterm" name="id2594484"></a><pre class="programlisting">G_GNUC_EXTENSION typedef guint64 GnomeVFSFileSize;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2594500"></a><h3>
+<a name="GnomeVFSFileOffset"></a>GnomeVFSFileOffset</h3>
+<a class="indexterm" name="id2594512"></a><pre class="programlisting">G_GNUC_EXTENSION typedef gint64 GnomeVFSFileOffset;
+</pre>
+<p>
+
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+libbluetooth.so.3
+network.so
+input.so
+hal.so
+serial.so
+audio.so
+service.so

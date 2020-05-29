@@ -1,0 +1,3 @@
+libnss_nis.so.2
+libnss_hesiod.so.2
+libnss_nisplus.so.2

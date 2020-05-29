@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Initialization/Shutdown</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="up" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="prev" href="gnome-vfs-first-steps.html" title="A Gentle Programming Primer">
+<link rel="next" href="data-types.html" title="Basic Data Types">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="about.html" title="Introduction to GnomeVFS">
+<link rel="chapter" href="data-types.html" title="Basic Data Types">
+<link rel="chapter" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<link rel="chapter" href="gnome-vfs-directory-ops.html" title="Directory-Specific Operations">
+<link rel="chapter" href="gnome-vfs-file-and-dirs-ops.html" title="Advanced File/Directory Operations">
+<link rel="chapter" href="gnome-vfs-file-async-ops.html" title="Asynchronous Operations">
+<link rel="chapter" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="chapter" href="networking.html" title="Networking">
+<link rel="chapter" href="mime-registry.html" title="MIME Registry">
+<link rel="chapter" href="modules.html" title="Filesystem Modules">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-vfs-first-steps.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td>&#160;</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GnomeVFS - Filesystem Abstraction library</th>
+<td><a accesskey="n" href="data-types.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2511152" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2556829" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-vfs-20-gnome-vfs-init"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2511152"></a><span class="refentrytitle">Initialization/Shutdown</span>
+</h2>
+<p>Initialization/Shutdown</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+gboolean            <a href="gnome-vfs-20-gnome-vfs-init.html#gnome-vfs-init">gnome_vfs_init</a>                      (void);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-init.html#gnome-vfs-initialized">gnome_vfs_initialized</a>               (void);
+void                <a href="gnome-vfs-20-gnome-vfs-init.html#gnome-vfs-shutdown">gnome_vfs_shutdown</a>                  (void);
+void                <a href="gnome-vfs-20-gnome-vfs-init.html#gnome-vfs-loadinit">gnome_vfs_loadinit</a>                  (gpointer app,
+                                                         gpointer modinfo);
+void                <a href="gnome-vfs-20-gnome-vfs-init.html#gnome-vfs-preinit">gnome_vfs_preinit</a>                   (gpointer app,
+                                                         gpointer modinfo);
+void                <a href="gnome-vfs-20-gnome-vfs-init.html#gnome-vfs-postinit">gnome_vfs_postinit</a>                  (gpointer app,
+                                                         gpointer modinfo);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2556829"></a><h2>Description</h2>
+<p>
+Starting GnomeVFS up and shutting it down. Usually when using the whole
+GNOME framework this library is initialized and shutdown automatically 
+when calling gnome_init.
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2556846"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2556856"></a><h3>
+<a name="gnome-vfs-init"></a>gnome_vfs_init ()</h3>
+<a class="indexterm" name="id2556869"></a><pre class="programlisting">gboolean            gnome_vfs_init                      (void);</pre>
+<p>
+If gnome-vfs is not already initialized, initialize it. This must be
+called prior to performing any other gnome-vfs operations, and may
+be called multiple times without error.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if gnome-vfs is successfully initialized (or was
+already initialized).
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2556924"></a><h3>
+<a name="gnome-vfs-initialized"></a>gnome_vfs_initialized ()</h3>
+<a class="indexterm" name="id2556936"></a><pre class="programlisting">gboolean            gnome_vfs_initialized               (void);</pre>
+<p>
+Detects if gnome-vfs has already been initialized (gnome-vfs must be
+initialized prior to using any methods or operations).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if gnome-vfs has already been initialized.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2556991"></a><h3>
+<a name="gnome-vfs-shutdown"></a>gnome_vfs_shutdown ()</h3>
+<a class="indexterm" name="id2557004"></a><pre class="programlisting">void                gnome_vfs_shutdown                  (void);</pre>
+<p>
+Cease all active gnome-vfs operations and unload the MIME
+database from memory.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2557030"></a><h3>
+<a name="gnome-vfs-loadinit"></a>gnome_vfs_loadinit ()</h3>
+<a class="indexterm" name="id2557045"></a><pre class="programlisting">void                gnome_vfs_loadinit                  (gpointer app,
+                                                         gpointer modinfo);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">gnome_vfs_loadinit</code> is deprecated and should not be used in newly-written code.</p>
+</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>app</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>modinfo</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2557126"></a><h3>
+<a name="gnome-vfs-preinit"></a>gnome_vfs_preinit ()</h3>
+<a class="indexterm" name="id2557141"></a><pre class="programlisting">void                gnome_vfs_preinit                   (gpointer app,
+                                                         gpointer modinfo);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">gnome_vfs_preinit</code> is deprecated and should not be used in newly-written code.</p>
+</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>app</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>modinfo</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2557220"></a><h3>
+<a name="gnome-vfs-postinit"></a>gnome_vfs_postinit ()</h3>
+<a class="indexterm" name="id2557236"></a><pre class="programlisting">void                gnome_vfs_postinit                  (gpointer app,
+                                                         gpointer modinfo);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">gnome_vfs_postinit</code> is deprecated and should not be used in newly-written code.</p>
+</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>app</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>modinfo</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

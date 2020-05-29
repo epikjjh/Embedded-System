@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: matchbox-desktop
+Description: Matchbox Desktop module dependencies.
+Version: 0.9.1
+Requires: libmb
+Libs: -L${libdir}
+Cflags: -I${includedir}/matchbox-desktop

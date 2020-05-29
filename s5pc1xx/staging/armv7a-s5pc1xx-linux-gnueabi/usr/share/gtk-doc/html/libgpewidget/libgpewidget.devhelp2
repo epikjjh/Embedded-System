@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="GPE Manual: libgpewidget Reference" link="index.html" author="Florian Boor" name="libgpewidget" version="2">
+  <chapters>
+    <sub name="Interface Description" link="ch01.html"/>
+    <sub name="About" link="ch02.html"/>
+  </chapters>
+  <functions/>
+</book>

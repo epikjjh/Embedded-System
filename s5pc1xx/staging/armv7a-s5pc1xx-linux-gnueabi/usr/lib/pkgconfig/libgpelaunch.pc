@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib
+includedir=/usr/include
+ 
+Name: libgpelaunch
+Description: GPE launcher library
+Version: 0.14
+Libs: -L${libdir} -lgpelaunch
+Cflags: -I${includedir}
+Requires: glib-2.0

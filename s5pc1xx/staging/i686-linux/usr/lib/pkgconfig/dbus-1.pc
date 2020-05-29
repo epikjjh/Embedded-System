@@ -1,0 +1,15 @@
+prefix=/opt/s5pc1xx/staging/i686-linux/usr
+exec_prefix=/opt/s5pc1xx/staging/i686-linux/usr
+libdir=/opt/s5pc1xx/staging/i686-linux/usr/lib
+includedir=/opt/s5pc1xx/staging/i686-linux/usr/include
+system_bus_default_address=unix:path=/opt/s5pc1xx/staging/i686-linux/var/run/dbus/system_bus_socket
+sysconfdir=/opt/s5pc1xx/staging/i686-linux/etc
+session_bus_services_dir=/opt/s5pc1xx/staging/i686-linux/usr/share/dbus-1/services
+daemondir=/opt/s5pc1xx/staging/i686-linux/usr/bin
+
+Name: dbus
+Description: Free desktop message bus
+Version: 1.2.1
+Libs: -L${libdir} -ldbus-1  
+Cflags: -I${includedir}/dbus-1.0 -I${libdir}/dbus-1.0/include
+

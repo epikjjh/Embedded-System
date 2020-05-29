@@ -1,0 +1,14 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include/qt4/QtCLucene
+qt_config=lex yacc uic resources qt release incremental link_prl exceptions no_mocdepend release stl qt_no_framework release shared dll largefile stl dylib create_prl link_prl depend_includepath QTDIR_build qt_install_headers qt depend_includepath qmake_cache target_qt create_libtool create_pc explicitlib qt warn_off moc thread shared dll
+
+
+
+Name: Qtclucene
+Description: Qtclucene Library
+Version: 4.4.3
+Libs: -L${libdir} -lQtCLucene    -lQtCore   -lz -lm -pthread -lgthread-2.0 -lrt -lglib-2.0 -lpthread -ldl  
+Cflags: -DQT_SHARED -I/usr/include/qt4 -I${includedir}
+

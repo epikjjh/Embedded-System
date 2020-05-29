@@ -1,0 +1,898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>SoupSession</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.71.1">
+<link rel="start" href="index.html" title="libsoup Reference Manual">
+<link rel="up" href="ch02.html" title="libsoup API Reference">
+<link rel="prev" href="SoupServer.html" title="SoupServer">
+<link rel="next" href="SoupSessionAsync.html" title="SoupSessionAsync">
+<meta name="generator" content="GTK-Doc V1.7 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="libsoup Tutorial">
+<link rel="chapter" href="ch02.html" title="libsoup API Reference">
+<link rel="chapter" href="ch03.html" title="libsoup internals">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SoupServer.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libsoup Reference Manual</th>
+<td><a accesskey="n" href="SoupSessionAsync.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id332174" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id367260" class="shortcut">Description</a>
+                  &#160;|&#160;
+                  <a href="#id365692" class="shortcut">Object Hierarchy</a>
+                  &#160;|&#160;
+                  <a href="#id365728" class="shortcut">Implemented Interfaces</a>
+                  &#160;|&#160;
+                  <a href="#id367029" class="shortcut">Properties</a>
+                  &#160;|&#160;
+                  <a href="#id367132" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SoupSession"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id332174"></a><span class="refentrytitle">SoupSession</span>
+</h2>
+<p>SoupSession &#8212; Soup session state object</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+struct      <a href="SoupSession.html#SoupSession-struct">SoupSession</a>;
+void        <a href="SoupSession.html#soup-session-queue-message">soup_session_queue_message</a>      (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> callback,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void        <a href="SoupSession.html#soup-session-requeue-message">soup_session_requeue_message</a>    (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+<a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>       <a href="SoupSession.html#soup-session-send-message">soup_session_send_message</a>       (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+void        <a href="SoupSession.html#soup-session-abort">soup_session_abort</a>              (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session);
+void        <a href="SoupSession.html#soup-session-add-filter">soup_session_add_filter</a>         (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             SoupMessageFilter *filter);
+void        <a href="SoupSession.html#soup-session-cancel-message">soup_session_cancel_message</a>     (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+<a href="SoupConnection.html" title="SoupConnection">SoupConnection</a>* <a href="SoupSession.html#soup-session-get-connection">soup_session_get_connection</a> (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> *try_pruning,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> *is_new);
+void        <a href="SoupSession.html#soup-session-remove-filter">soup_session_remove_filter</a>      (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             SoupMessageFilter *filter);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupSession.html#soup-session-try-prune-connection">soup_session_try_prune_connection</a>
+                                            (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session);
+#define     <a href="SoupSession.html#SOUP-SESSION-PROXY-URI:CAPS">SOUP_SESSION_PROXY_URI</a>
+#define     <a href="SoupSession.html#SOUP-SESSION-MAX-CONNS:CAPS">SOUP_SESSION_MAX_CONNS</a>
+#define     <a href="SoupSession.html#SOUP-SESSION-MAX-CONNS-PER-HOST:CAPS">SOUP_SESSION_MAX_CONNS_PER_HOST</a>
+#define     <a href="SoupSession.html#SOUP-SESSION-USE-NTLM:CAPS">SOUP_SESSION_USE_NTLM</a>
+#define     <a href="SoupSession.html#SOUP-SESSION-SSL-CA-FILE:CAPS">SOUP_SESSION_SSL_CA_FILE</a>
+#define     <a href="SoupSession.html#SOUP-SESSION-ASYNC-CONTEXT:CAPS">SOUP_SESSION_ASYNC_CONTEXT</a>
+#define     <a href="SoupSession.html#SOUP-SESSION-TIMEOUT:CAPS">SOUP_SESSION_TIMEOUT</a>
+
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id365692"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  <a
+href="../gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SoupSession
+         +----<a href="SoupSessionSync.html" title="SoupSessionSync">SoupSessionSync</a>
+         +----<a href="SoupSessionAsync.html" title="SoupSessionAsync">SoupSessionAsync</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id365728"></a><h2>Implemented Interfaces</h2>
+<p>
+SoupSession implements
+ SoupMessageFilter.</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id367029"></a><h2>Properties</h2>
+<pre class="synopsis">
+
+  "<a href="SoupSession.html#SoupSession--async-context">async-context</a>"        <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write / Construct Only
+  "<a href="SoupSession.html#SoupSession--max-conns">max-conns</a>"            <a
+href="../glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a href="SoupSession.html#SoupSession--max-conns-per-host">max-conns-per-host</a>"   <a
+href="../glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write
+  "<a href="SoupSession.html#SoupSession--proxy-uri">proxy-uri</a>"            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write
+  "<a href="SoupSession.html#SoupSession--ssl-ca-file">ssl-ca-file</a>"          <a
+href="../gobject/gobject-Standard-Parameter-and-Value-Types.html#gchararray"
+>gchararray</a>            : Read / Write
+  "<a href="SoupSession.html#SoupSession--timeout">timeout</a>"              <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write
+  "<a href="SoupSession.html#SoupSession--use-ntlm">use-ntlm</a>"             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id367132"></a><h2>Signals</h2>
+<pre class="synopsis">
+
+"<a href="SoupSession.html#SoupSession-authenticate">authenticate</a>"
+            void        user_function      (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                            <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_type,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_realm,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     username,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     password,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)       : Run first
+"<a href="SoupSession.html#SoupSession-reauthenticate">reauthenticate</a>"
+            void        user_function      (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                            <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_type,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_realm,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     username,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     password,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)       : Run first
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id367260"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id369676"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id369687"></a><h3>
+<a name="SoupSession-struct"></a>struct SoupSession</h3>
+<a class="indexterm" name="id369699"></a><pre class="programlisting">struct SoupSession;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id369714"></a><h3>
+<a name="soup-session-queue-message"></a>soup_session_queue_message ()</h3>
+<a class="indexterm" name="id369727"></a><pre class="programlisting">void        soup_session_queue_message      (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> callback,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Queues the message <em class="parameter"><code>msg</code></em> for sending. All messages are processed
+while the glib main loop runs. If <em class="parameter"><code>msg</code></em> has been processed before,
+any resources related to the time it was last sent are freed.
+</p>
+<p>
+Upon message completion, the callback specified in <em class="parameter"><code>callback</code></em> will
+be invoked. If after returning from this callback the message has
+not been requeued, <em class="parameter"><code>msg</code></em> will be unreffed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message to queue
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>callback</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html#SoupMessageCallbackFn"><span class="type">SoupMessageCallbackFn</span></a> which will be called after the
+message completes or when an unrecoverable error occurs.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> a pointer passed to <em class="parameter"><code>callback</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id369886"></a><h3>
+<a name="soup-session-requeue-message"></a>soup_session_requeue_message ()</h3>
+<a class="indexterm" name="id369899"></a><pre class="programlisting">void        soup_session_requeue_message    (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+This causes <em class="parameter"><code>msg</code></em> to be placed back on the queue to be attempted
+again.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message to requeue
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id369981"></a><h3>
+<a name="soup-session-send-message"></a>soup_session_send_message ()</h3>
+<a class="indexterm" name="id369993"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>       soup_session_send_message       (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Synchronously send <em class="parameter"><code>msg</code></em>. This call will not return until the
+transfer is finished successfully or there is an unrecoverable
+error.
+</p>
+<p>
+<em class="parameter"><code>msg</code></em> is not freed upon return.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message to send
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the HTTP status code of the response
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id370097"></a><h3>
+<a name="soup-session-abort"></a>soup_session_abort ()</h3>
+<a class="indexterm" name="id370109"></a><pre class="programlisting">void        soup_session_abort              (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session);</pre>
+<p>
+Cancels all pending requests in <em class="parameter"><code>session</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> the session
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id370164"></a><h3>
+<a name="soup-session-add-filter"></a>soup_session_add_filter ()</h3>
+<a class="indexterm" name="id370176"></a><pre class="programlisting">void        soup_session_add_filter         (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             SoupMessageFilter *filter);</pre>
+<p>
+Adds <em class="parameter"><code>filter</code></em> to <em class="parameter"><code>session</code></em>'s list of message filters to be applied to
+all messages.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>filter</code></em>&#160;:</span></td>
+<td> an object implementing the <span class="type">SoupMessageFilter</span> interface
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id370272"></a><h3>
+<a name="soup-session-cancel-message"></a>soup_session_cancel_message ()</h3>
+<a class="indexterm" name="id370284"></a><pre class="programlisting">void        soup_session_cancel_message     (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Causes <em class="parameter"><code>session</code></em> to immediately finish processing <em class="parameter"><code>msg</code></em>. You should
+set a status code on <em class="parameter"><code>msg</code></em> with <a href="SoupMessage.html#soup-message-set-status"><code class="function">soup_message_set_status()</code></a> before
+calling this function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message to cancel
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377958"></a><h3>
+<a name="soup-session-get-connection"></a>soup_session_get_connection ()</h3>
+<a class="indexterm" name="id377970"></a><pre class="programlisting"><a href="SoupConnection.html" title="SoupConnection">SoupConnection</a>* soup_session_get_connection (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> *try_pruning,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> *is_new);</pre>
+<p>
+Tries to find or create a connection for <em class="parameter"><code>msg</code></em>; this is an internal
+method for <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a> subclasses.
+</p>
+<p>
+If there is an idle connection to the relevant host available, then
+that connection will be returned (with *<em class="parameter"><code>is_new</code></em> set to <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>). The
+connection will be marked "reserved", so the caller must call
+<a href="SoupConnection.html#soup-connection-release"><code class="function">soup_connection_release()</code></a> if it ends up not using the connection
+right away.
+</p>
+<p>
+If there is no idle connection available, but it is possible to
+create a new connection, then one will be created and returned,
+with *<em class="parameter"><code>is_new</code></em> set to <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>. The caller MUST then call
+<a href="SoupConnection.html#soup-connection-connect-sync"><code class="function">soup_connection_connect_sync()</code></a> or <a href="SoupConnection.html#soup-connection-connect-async"><code class="function">soup_connection_connect_async()</code></a>
+to connect it. If the connection attempt succeeds, the connection
+will be marked "reserved" and added to <em class="parameter"><code>session</code></em>'s connection pool
+once it connects. If the connection attempt fails, the connection
+will be unreffed.
+</p>
+<p>
+If no connection is available and a new connection cannot be made,
+<a href="SoupSession.html#soup-session-get-connection"><code class="function">soup_session_get_connection()</code></a> will return <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>. If <em class="parameter"><code>session</code></em> has
+the maximum number of open connections open, but does not have the
+maximum number of per-host connections open to the relevant host,
+then *<em class="parameter"><code>try_pruning</code></em> will be set to <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a>. In this case, the caller
+can call <a href="SoupSession.html#soup-session-try-prune-connection"><code class="function">soup_session_try_prune_connection()</code></a> to close an idle
+connection, and then try <a href="SoupSession.html#soup-session-get-connection"><code class="function">soup_session_get_connection()</code></a> again. (If
+calling <a href="SoupSession.html#soup-session-try-prune-connection"><code class="function">soup_session_try_prune_connection()</code></a> wouldn't help, then
+*<em class="parameter"><code>try_pruning</code></em> is left untouched; it is NOT set to <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>try_pruning</code></em>&#160;:</span></td>
+<td> on return, whether or not to try pruning a connection
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>is_new</code></em>&#160;:</span></td>
+<td> on return, <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the returned connection is new and not
+yet connected
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a <a href="SoupConnection.html" title="SoupConnection"><span class="type">SoupConnection</span></a>, or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378264"></a><h3>
+<a name="soup-session-remove-filter"></a>soup_session_remove_filter ()</h3>
+<a class="indexterm" name="id378275"></a><pre class="programlisting">void        soup_session_remove_filter      (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                             SoupMessageFilter *filter);</pre>
+<p>
+Removes <em class="parameter"><code>filter</code></em> from <em class="parameter"><code>session</code></em>'s list of message filters</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>filter</code></em>&#160;:</span></td>
+<td> an object implementing the <span class="type">SoupMessageFilter</span> interface
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378359"></a><h3>
+<a name="soup-session-try-prune-connection"></a>soup_session_try_prune_connection ()</h3>
+<a class="indexterm" name="id378369"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_session_try_prune_connection
+                                            (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session);</pre>
+<p>
+Finds the least-recently-used idle connection in <em class="parameter"><code>session</code></em> and closes
+it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> a <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if a connection was closed, <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if there are
+no idle connections.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378451"></a><h3>
+<a name="SOUP-SESSION-PROXY-URI:CAPS"></a>SOUP_SESSION_PROXY_URI</h3>
+<a class="indexterm" name="id378461"></a><pre class="programlisting">#define SOUP_SESSION_PROXY_URI          "proxy-uri"
+</pre>
+<p>
+An alias for the "proxy-uri" property.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378475"></a><h3>
+<a name="SOUP-SESSION-MAX-CONNS:CAPS"></a>SOUP_SESSION_MAX_CONNS</h3>
+<a class="indexterm" name="id378485"></a><pre class="programlisting">#define SOUP_SESSION_MAX_CONNS          "max-conns"
+</pre>
+<p>
+An alias for the "max-conns" property.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378499"></a><h3>
+<a name="SOUP-SESSION-MAX-CONNS-PER-HOST:CAPS"></a>SOUP_SESSION_MAX_CONNS_PER_HOST</h3>
+<a class="indexterm" name="id378509"></a><pre class="programlisting">#define SOUP_SESSION_MAX_CONNS_PER_HOST "max-conns-per-host"
+</pre>
+<p>
+An alias for the "max-conns-per-host" property.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378523"></a><h3>
+<a name="SOUP-SESSION-USE-NTLM:CAPS"></a>SOUP_SESSION_USE_NTLM</h3>
+<a class="indexterm" name="id378534"></a><pre class="programlisting">#define SOUP_SESSION_USE_NTLM           "use-ntlm"
+</pre>
+<p>
+An alias for the "use-ntlm" property.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378547"></a><h3>
+<a name="SOUP-SESSION-SSL-CA-FILE:CAPS"></a>SOUP_SESSION_SSL_CA_FILE</h3>
+<a class="indexterm" name="id378558"></a><pre class="programlisting">#define SOUP_SESSION_SSL_CA_FILE        "ssl-ca-file"
+</pre>
+<p>
+An alias for the "ssl-ca-file" property.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378571"></a><h3>
+<a name="SOUP-SESSION-ASYNC-CONTEXT:CAPS"></a>SOUP_SESSION_ASYNC_CONTEXT</h3>
+<a class="indexterm" name="id378582"></a><pre class="programlisting">#define SOUP_SESSION_ASYNC_CONTEXT      "async-context"
+</pre>
+<p>
+An alias for the "async-context" property.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378596"></a><h3>
+<a name="SOUP-SESSION-TIMEOUT:CAPS"></a>SOUP_SESSION_TIMEOUT</h3>
+<a class="indexterm" name="id378606"></a><pre class="programlisting">#define SOUP_SESSION_TIMEOUT		"timeout"
+</pre>
+<p>
+An alias for the "timeout" property.
+</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id378621"></a><h2>Property Details</h2>
+<div class="refsect2" lang="en">
+<a name="id378630"></a><h3>
+<a name="SoupSession--async-context"></a>The "<code class="literal">async-context</code>" property</h3>
+<a class="indexterm" name="id378643"></a><pre class="programlisting">  "async-context"        <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write / Construct Only</pre>
+<p>The GMainContext to dispatch async I/O in.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378662"></a><h3>
+<a name="SoupSession--max-conns"></a>The "<code class="literal">max-conns</code>" property</h3>
+<a class="indexterm" name="id378674"></a><pre class="programlisting">  "max-conns"            <a
+href="../glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>The maximum number of connections that the session can open at once.</p>
+<p>Allowed values: &gt;= 1</p>
+<p>Default value: 10</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378700"></a><h3>
+<a name="SoupSession--max-conns-per-host"></a>The "<code class="literal">max-conns-per-host</code>" property</h3>
+<a class="indexterm" name="id378713"></a><pre class="programlisting">  "max-conns-per-host"   <a
+href="../glib/glib-Basic-Types.html#gint"
+>gint</a>                  : Read / Write</pre>
+<p>The maximum number of connections that the session can open at once to a given host.</p>
+<p>Allowed values: &gt;= 1</p>
+<p>Default value: 4</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378739"></a><h3>
+<a name="SoupSession--proxy-uri"></a>The "<code class="literal">proxy-uri</code>" property</h3>
+<a class="indexterm" name="id378751"></a><pre class="programlisting">  "proxy-uri"            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>              : Read / Write</pre>
+<p>The HTTP Proxy to use for this session.</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378770"></a><h3>
+<a name="SoupSession--ssl-ca-file"></a>The "<code class="literal">ssl-ca-file</code>" property</h3>
+<a class="indexterm" name="id378783"></a><pre class="programlisting">  "ssl-ca-file"          <a
+href="../gobject/gobject-Standard-Parameter-and-Value-Types.html#gchararray"
+>gchararray</a>            : Read / Write</pre>
+<p>File containing SSL CA certificates.</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378805"></a><h3>
+<a name="SoupSession--timeout"></a>The "<code class="literal">timeout</code>" property</h3>
+<a class="indexterm" name="id378817"></a><pre class="programlisting">  "timeout"              <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>                 : Read / Write</pre>
+<p>Value in seconds to timeout a blocking I/O.</p>
+<p>Default value: 0</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id378839"></a><h3>
+<a name="SoupSession--use-ntlm"></a>The "<code class="literal">use-ntlm</code>" property</h3>
+<a class="indexterm" name="id378852"></a><pre class="programlisting">  "use-ntlm"             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>              : Read / Write</pre>
+<p>Whether or not to use NTLM authentication.</p>
+<p>Default value: FALSE</p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id378875"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="id378884"></a><h3>
+<a name="SoupSession-authenticate"></a>The "authenticate" signal</h3>
+<a class="indexterm" name="id378891"></a><pre class="programlisting">void        user_function                  (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                            <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_type,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_realm,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     username,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     password,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)       : Run first</pre>
+<p>
+Emitted when the session requires authentication. The
+credentials may come from the user, or from cached
+information. If no credentials are available, leave
+<em class="parameter"><code>username</code></em> and <em class="parameter"><code>password</code></em> unchanged.
+</p>
+<p>
+If the provided credentials fail, the <span class="type">reauthenticate</span>
+signal will be emitted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> the session
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a> being sent
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>auth_type</code></em>&#160;:</span></td>
+<td> the authentication type
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>auth_realm</code></em>&#160;:</span></td>
+<td> the realm being authenticated to
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>username</code></em>&#160;:</span></td>
+<td> the signal handler should set this to point to
+the provided username
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>password</code></em>&#160;:</span></td>
+<td> the signal handler should set this to point to
+the provided password
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id379072"></a><h3>
+<a name="SoupSession-reauthenticate"></a>The "reauthenticate" signal</h3>
+<a class="indexterm" name="id379079"></a><pre class="programlisting">void        user_function                  (<a href="SoupSession.html" title="SoupSession">SoupSession</a> *session,
+                                            <a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_type,
+                                            <a
+href="../glib/glib-Basic-Types.html#gchar"
+>gchar</a>       *auth_realm,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     username,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     password,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)       : Run first</pre>
+<p>
+Emitted when the credentials provided by the application to
+the <span class="type">authenticate</span> signal have failed. This gives the
+application a second chance to provide authentication
+credentials. If the new credentials also fail, <a href="SoupSession.html" title="SoupSession"><span class="type">SoupSession</span></a>
+will emit <span class="type">reauthenticate</span> again, and will continue doing so
+until the provided credentials work, or a <span class="type">reauthenticate</span>
+signal emission "fails" (because the handler left <em class="parameter"><code>username</code></em>
+and <em class="parameter"><code>password</code></em> unchanged). At that point, the 401 or 407
+error status will be returned to the caller.
+</p>
+<p>
+If your application only uses cached passwords, it should
+only connect to <span class="type">authenticate</span>, and not <span class="type">reauthenticate</span>.
+</p>
+<p>
+If your application always prompts the user for a password,
+and never uses cached information, then you can connect the
+same handler to <span class="type">authenticate</span> and <span class="type">reauthenticate</span>.
+</p>
+<p>
+To get standard web-browser behavior, return either cached
+information or a user-provided password (whichever is
+available) from the <span class="type">authenticate</span> handler, but return only
+user-provided information from the <span class="type">reauthenticate</span> handler.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>session</code></em>&#160;:</span></td>
+<td> the session
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a> being sent
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>auth_type</code></em>&#160;:</span></td>
+<td> the authentication type
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>auth_realm</code></em>&#160;:</span></td>
+<td> the realm being authenticated to
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>username</code></em>&#160;:</span></td>
+<td> the signal handler should set this to point to
+the provided username
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>password</code></em>&#160;:</span></td>
+<td> the signal handler should set this to point to
+the provided password
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

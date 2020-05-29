@@ -1,0 +1,17 @@
+libnss_files.so.2
+libnss_dns.so.2
+libcidn.so.1
+libc.so.6
+libmemusage.so
+libBrokenLocale.so.1
+librt.so.1
+libnss_compat.so.2
+libdl.so.2
+libpthread.so.0
+libm.so.6
+libresolv.so.2
+libutil.so.1
+ld-linux.so.3
+libcrypt.so.1
+libanl.so.1
+libnsl.so.1

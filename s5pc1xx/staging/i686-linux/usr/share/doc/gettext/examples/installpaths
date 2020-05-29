@@ -1,0 +1,9 @@
+prefix='/opt/s5pc1xx/staging/i686-linux/usr'
+exec_prefix="/opt/s5pc1xx/staging/i686-linux/usr"
+datarootdir="${prefix}/share"
+datadir="/opt/s5pc1xx/staging/i686-linux/usr/share"
+docdir="${datarootdir}/doc/gettext"
+ACLOCALDIR="${datadir}/aclocal"
+GETTEXTSRCDIR="/opt/s5pc1xx/staging/i686-linux/usr/share/gettext"
+GETTEXTSRCPODIR="/opt/s5pc1xx/staging/i686-linux/usr/share/gettext/po"
+EXAMPLESCONFIGDIR="${datarootdir}/doc/gettext/examples/config"

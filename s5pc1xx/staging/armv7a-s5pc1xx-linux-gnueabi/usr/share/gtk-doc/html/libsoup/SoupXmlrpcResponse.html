@@ -1,0 +1,819 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>SoupXmlrpcResponse</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.71.1">
+<link rel="start" href="index.html" title="libsoup Reference Manual">
+<link rel="up" href="ch02.html" title="libsoup API Reference">
+<link rel="prev" href="SoupXmlrpcMessage.html" title="SoupXmlrpcMessage">
+<link rel="next" href="libsoup-Soup-Miscellaneous-Utilities.html" title="soup-misc">
+<meta name="generator" content="GTK-Doc V1.7 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="libsoup Tutorial">
+<link rel="chapter" href="ch02.html" title="libsoup API Reference">
+<link rel="chapter" href="ch03.html" title="libsoup internals">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SoupXmlrpcMessage.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libsoup Reference Manual</th>
+<td><a accesskey="n" href="libsoup-Soup-Miscellaneous-Utilities.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id337871" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id395594" class="shortcut">Description</a>
+                  &#160;|&#160;
+                  <a href="#id395570" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SoupXmlrpcResponse"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id337871"></a><span class="refentrytitle">SoupXmlrpcResponse</span>
+</h2>
+<p>SoupXmlrpcResponse &#8212; An XML-RPC response</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+            <a href="SoupXmlrpcResponse.html#SoupXmlrpcResponse-struct">SoupXmlrpcResponse</a>;
+<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a>* <a href="SoupXmlrpcResponse.html#soup-xmlrpc-response-new">soup_xmlrpc_response_new</a>
+                                            (void);
+<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a>* <a href="SoupXmlrpcResponse.html#soup-xmlrpc-response-new-from-string">soup_xmlrpc_response_new_from_string</a>
+                                            (const char *xmlstr);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-response-from-string">soup_xmlrpc_response_from_string</a>
+                                            (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response,
+                                             const char *xmlstr);
+xmlChar*    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-response-to-string">soup_xmlrpc_response_to_string</a>  (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response);
+
+typedef     <a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a>;
+enum        <a href="SoupXmlrpcResponse.html#SoupXmlrpcValueType">SoupXmlrpcValueType</a>;
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-response-is-fault">soup_xmlrpc_response_is_fault</a>   (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response);
+<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a>* <a href="SoupXmlrpcResponse.html#soup-xmlrpc-response-get-value">soup_xmlrpc_response_get_value</a>
+                                            (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response);
+
+<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueType">SoupXmlrpcValueType</a> <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-type">soup_xmlrpc_value_get_type</a>
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-int">soup_xmlrpc_value_get_int</a>       (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             long *i);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-double">soup_xmlrpc_value_get_double</a>    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             double *b);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-boolean">soup_xmlrpc_value_get_boolean</a>   (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> *b);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-string">soup_xmlrpc_value_get_string</a>    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             char **str);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-datetime">soup_xmlrpc_value_get_datetime</a>  (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             time_t *timeval);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-base64">soup_xmlrpc_value_get_base64</a>    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a
+href="../glib/glib-Byte-Arrays.html#GByteArray"
+>GByteArray</a> **data);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-get-struct">soup_xmlrpc_value_get_struct</a>    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> **table);
+
+typedef     <a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a>;
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-array-get-iterator">soup_xmlrpc_value_array_get_iterator</a>
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> **iter);
+<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a>* <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-array-iterator-prev">soup_xmlrpc_value_array_iterator_prev</a>
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> *iter);
+<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a>* <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-array-iterator-next">soup_xmlrpc_value_array_iterator_next</a>
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> *iter);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-array-iterator-get-value">soup_xmlrpc_value_array_iterator_get_value</a>
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> *iter,
+                                             <a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> **value);
+
+void        <a href="SoupXmlrpcResponse.html#soup-xmlrpc-value-dump">soup_xmlrpc_value_dump</a>          (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value);
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id395570"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  <a
+href="../gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SoupXmlrpcResponse
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id395594"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id395610"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id395621"></a><h3>
+<a name="SoupXmlrpcResponse-struct"></a>SoupXmlrpcResponse</h3>
+<a class="indexterm" name="id395633"></a><pre class="programlisting">typedef struct _SoupXmlrpcResponse SoupXmlrpcResponse;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id395648"></a><h3>
+<a name="soup-xmlrpc-response-new"></a>soup_xmlrpc_response_new ()</h3>
+<a class="indexterm" name="id395660"></a><pre class="programlisting"><a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a>* soup_xmlrpc_response_new
+                                            (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id395696"></a><h3>
+<a name="soup-xmlrpc-response-new-from-string"></a>soup_xmlrpc_response_new_from_string ()</h3>
+<a class="indexterm" name="id395708"></a><pre class="programlisting"><a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a>* soup_xmlrpc_response_new_from_string
+                                            (const char *xmlstr);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>xmlstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398120"></a><h3>
+<a name="soup-xmlrpc-response-from-string"></a>soup_xmlrpc_response_from_string ()</h3>
+<a class="indexterm" name="id398131"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_response_from_string
+                                            (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response,
+                                             const char *xmlstr);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>response</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>xmlstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398202"></a><h3>
+<a name="soup-xmlrpc-response-to-string"></a>soup_xmlrpc_response_to_string ()</h3>
+<a class="indexterm" name="id398215"></a><pre class="programlisting">xmlChar*    soup_xmlrpc_response_to_string  (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>response</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398271"></a><h3>
+<a name="SoupXmlrpcValue"></a>SoupXmlrpcValue</h3>
+<a class="indexterm" name="id398283"></a><pre class="programlisting">typedef xmlNode *SoupXmlrpcValue;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398298"></a><h3>
+<a name="SoupXmlrpcValueType"></a>enum SoupXmlrpcValueType</h3>
+<a class="indexterm" name="id398311"></a><pre class="programlisting">typedef enum {
+	SOUP_XMLRPC_VALUE_TYPE_BAD,
+	SOUP_XMLRPC_VALUE_TYPE_INT,
+	SOUP_XMLRPC_VALUE_TYPE_BOOLEAN,
+	SOUP_XMLRPC_VALUE_TYPE_STRING,
+	SOUP_XMLRPC_VALUE_TYPE_DOUBLE,
+	SOUP_XMLRPC_VALUE_TYPE_DATETIME,
+	SOUP_XMLRPC_VALUE_TYPE_BASE64,
+	SOUP_XMLRPC_VALUE_TYPE_STRUCT,
+	SOUP_XMLRPC_VALUE_TYPE_ARRAY
+} SoupXmlrpcValueType;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398329"></a><h3>
+<a name="soup-xmlrpc-response-is-fault"></a>soup_xmlrpc_response_is_fault ()</h3>
+<a class="indexterm" name="id398341"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_response_is_fault   (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>response</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398397"></a><h3>
+<a name="soup-xmlrpc-response-get-value"></a>soup_xmlrpc_response_get_value ()</h3>
+<a class="indexterm" name="id398409"></a><pre class="programlisting"><a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a>* soup_xmlrpc_response_get_value
+                                            (<a href="SoupXmlrpcResponse.html" title="SoupXmlrpcResponse">SoupXmlrpcResponse</a> *response);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>response</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398466"></a><h3>
+<a name="soup-xmlrpc-value-get-type"></a>soup_xmlrpc_value_get_type ()</h3>
+<a class="indexterm" name="id398478"></a><pre class="programlisting"><a href="SoupXmlrpcResponse.html#SoupXmlrpcValueType">SoupXmlrpcValueType</a> soup_xmlrpc_value_get_type
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398535"></a><h3>
+<a name="soup-xmlrpc-value-get-int"></a>soup_xmlrpc_value_get_int ()</h3>
+<a class="indexterm" name="id398547"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_int       (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             long *i);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>i</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398623"></a><h3>
+<a name="soup-xmlrpc-value-get-double"></a>soup_xmlrpc_value_get_double ()</h3>
+<a class="indexterm" name="id398635"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_double    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             double *b);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>b</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398711"></a><h3>
+<a name="soup-xmlrpc-value-get-boolean"></a>soup_xmlrpc_value_get_boolean ()</h3>
+<a class="indexterm" name="id398724"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_boolean   (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> *b);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>b</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398800"></a><h3>
+<a name="soup-xmlrpc-value-get-string"></a>soup_xmlrpc_value_get_string ()</h3>
+<a class="indexterm" name="id398812"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_string    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             char **str);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>str</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398888"></a><h3>
+<a name="soup-xmlrpc-value-get-datetime"></a>soup_xmlrpc_value_get_datetime ()</h3>
+<a class="indexterm" name="id398901"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_datetime  (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             time_t *timeval);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>timeval</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398977"></a><h3>
+<a name="soup-xmlrpc-value-get-base64"></a>soup_xmlrpc_value_get_base64 ()</h3>
+<a class="indexterm" name="id398989"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_base64    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a
+href="../glib/glib-Byte-Arrays.html#GByteArray"
+>GByteArray</a> **data);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>data</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399065"></a><h3>
+<a name="soup-xmlrpc-value-get-struct"></a>soup_xmlrpc_value_get_struct ()</h3>
+<a class="indexterm" name="id399077"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_get_struct    (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> **table);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>table</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399153"></a><h3>
+<a name="SoupXmlrpcValueArrayIterator"></a>SoupXmlrpcValueArrayIterator</h3>
+<a class="indexterm" name="id399166"></a><pre class="programlisting">typedef xmlNodePtr SoupXmlrpcValueArrayIterator;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399181"></a><h3>
+<a name="soup-xmlrpc-value-array-get-iterator"></a>soup_xmlrpc_value_array_get_iterator ()</h3>
+<a class="indexterm" name="id399194"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_array_get_iterator
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value,
+                                             <a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> **iter);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>iter</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399244"></a><h3>
+<a name="soup-xmlrpc-value-array-iterator-prev"></a>soup_xmlrpc_value_array_iterator_prev ()</h3>
+<a class="indexterm" name="id399254"></a><pre class="programlisting"><a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a>* soup_xmlrpc_value_array_iterator_prev
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> *iter);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>iter</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399304"></a><h3>
+<a name="soup-xmlrpc-value-array-iterator-next"></a>soup_xmlrpc_value_array_iterator_next ()</h3>
+<a class="indexterm" name="id399315"></a><pre class="programlisting"><a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a>* soup_xmlrpc_value_array_iterator_next
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> *iter);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>iter</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399365"></a><h3>
+<a name="soup-xmlrpc-value-array-iterator-get-value"></a>soup_xmlrpc_value_array_iterator_get_value ()</h3>
+<a class="indexterm" name="id399375"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_xmlrpc_value_array_iterator_get_value
+                                            (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValueArrayIterator">SoupXmlrpcValueArrayIterator</a> *iter,
+                                             <a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> **value);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>iter</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id399443"></a><h3>
+<a name="soup-xmlrpc-value-dump"></a>soup_xmlrpc_value_dump ()</h3>
+<a class="indexterm" name="id399454"></a><pre class="programlisting">void        soup_xmlrpc_value_dump          (<a href="SoupXmlrpcResponse.html#SoupXmlrpcValue">SoupXmlrpcValue</a> *value);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

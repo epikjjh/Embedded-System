@@ -1,0 +1,621 @@
+.\"     Title: scanelf
+.\"    Author: Ned Ludd <solar@gentoo.org>
+.\" Generator: DocBook XSL Stylesheets v1.74.0 <http://docbook.sf.net/>
+.\"      Date: 11/27/2008
+.\"    Manual: Documentation for pax-utils
+.\"    Source: pax-utils 0.1.19
+.\"  Language: English
+.\"
+.TH "SCANELF" "1" "11/27/2008" "pax\-utils 0.1.19" "Documentation for pax-utils"
+.\" -----------------------------------------------------------------
+.\" * (re)Define some macros
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" toupper - uppercase a string (locale-aware)
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.de toupper
+.tr aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ
+\\$*
+.tr aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz
+..
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" SH-xref - format a cross-reference to an SH section
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.de SH-xref
+.ie n \{\
+.\}
+.toupper \\$*
+.el \{\
+\\$*
+.\}
+..
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" SH - level-one heading that works better for non-TTY output
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.de1 SH
+.\" put an extra blank line of space above the head in non-TTY output
+.if t \{\
+.sp 1
+.\}
+.sp \\n[PD]u
+.nr an-level 1
+.set-an-margin
+.nr an-prevailing-indent \\n[IN]
+.fi
+.in \\n[an-margin]u
+.ti 0
+.HTML-TAG ".NH \\n[an-level]"
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+\." make the size of the head bigger
+.ps +3
+.ft B
+.ne (2v + 1u)
+.ie n \{\
+.\" if n (TTY output), use uppercase
+.toupper \\$*
+.\}
+.el \{\
+.nr an-break-flag 0
+.\" if not n (not TTY), use normal case (not uppercase)
+\\$1
+.in \\n[an-margin]u
+.ti 0
+.\" if not n (not TTY), put a border/line under subheading
+.sp -.6
+\l'\n(.lu'
+.\}
+..
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" SS - level-two heading that works better for non-TTY output
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.de1 SS
+.sp \\n[PD]u
+.nr an-level 1
+.set-an-margin
+.nr an-prevailing-indent \\n[IN]
+.fi
+.in \\n[IN]u
+.ti \\n[SN]u
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.ps \\n[PS-SS]u
+\." make the size of the head bigger
+.ps +2
+.ft B
+.ne (2v + 1u)
+.if \\n[.$] \&\\$*
+..
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" BB/BE - put background/screen (filled box) around block of text
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.de BB
+.if t \{\
+.sp -.5
+.br
+.in +2n
+.ll -2n
+.gcolor red
+.di BX
+.\}
+..
+.de EB
+.if t \{\
+.if "\\$2"adjust-for-leading-newline" \{\
+.sp -1
+.\}
+.br
+.di
+.in
+.ll
+.gcolor
+.nr BW \\n(.lu-\\n(.i
+.nr BH \\n(dn+.5v
+.ne \\n(BHu+.5v
+.ie "\\$2"adjust-for-leading-newline" \{\
+\M[\\$1]\h'1n'\v'+.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
+.\}
+.el \{\
+\M[\\$1]\h'1n'\v'-.5v'\D'P \\n(BWu 0 0 \\n(BHu -\\n(BWu 0 0 -\\n(BHu'\M[]
+.\}
+.in 0
+.sp -.5v
+.nf
+.BX
+.in
+.sp .5v
+.fi
+.\}
+..
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" BM/EM - put colored marker in margin next to block of text
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.de BM
+.if t \{\
+.br
+.ll -2n
+.gcolor red
+.di BX
+.\}
+..
+.de EM
+.if t \{\
+.br
+.di
+.ll
+.gcolor
+.nr BH \\n(dn
+.ne \\n(BHu
+\M[\\$1]\D'P -.75n 0 0 \\n(BHu -(\\n[.i]u - \\n(INu - .75n) 0 0 -\\n(BHu'\M[]
+.in 0
+.nf
+.BX
+.in
+.fi
+.\}
+..
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "Name"
+scanelf \- user\-space utility to scan ELF files
+.SH "Synopsis"
+.fam C
+.HP \w'\fBscanelf\fR\ 'u
+\fBscanelf\fR [\fIoptions\fR] \fIELFs\fR\ or\ \fIdirectories\fR
+.fam
+.SH "DESCRIPTION"
+.PP
+
+\fBscanelf\fR
+is a user\-space utility to quickly scan given ELFs, directories, or common system paths for different information\&. This may include ELF types, their PaX markings, TEXTRELs, etc\&.\&.\&.
+.SH "OPTIONS"
+.PP
+\fB\-A\fR, \fB\-\-archives\fR
+.RS 4
+Scan archives (\&.a files)
+.RE
+.PP
+\fB\-a\fR, \fB\-\-all\fR
+.RS 4
+Print all scanned info (\fB\-x \-e \-t \-r \-n \-i \-b\fR)
+.RE
+.PP
+\fB\-B\fR, \fB\-\-banner\fR
+.RS 4
+Don\'t display the header
+.RE
+.PP
+\fB\-b\fR, \fB\-\-bind\fR
+.RS 4
+Print BIND information
+.RE
+.PP
+\fB\-E\fR, \fB\-\-etype\fR \fIETYPE\fR
+.RS 4
+Print only ELF files matching specified etype (like ET_DYN, ET_EXEC, etc\&.\&.\&.)
+.RE
+.PP
+\fB\-e\fR, \fB\-\-header\fR
+.RS 4
+Print GNU_STACK markings
+.RE
+.PP
+\fB\-F\fR, \fB\-\-format\fR \fIFORMAT\fR
+.RS 4
+Use specified format for output; see the
+\fBFORMAT\fR
+section
+.RE
+.PP
+\fB\-f\fR, \fB\-\-from\fR \fIFILE\fR
+.RS 4
+Read input stream from specified filename
+.RE
+.PP
+\fB\-g\fR, \fB\-\-gmatch\fR
+.RS 4
+Use strncmp to match libraries (use with
+\fB\-N\fR)\&. Or regexp with symbol matching
+.RE
+.PP
+\fB\-h\fR, \fB\-\-help\fR
+.RS 4
+Show condensed usage and exit
+.RE
+.PP
+\fB\-i\fR, \fB\-\-interp\fR
+.RS 4
+Print INTERP information
+.RE
+.PP
+\fB\-k\fR, \fB\-\-section\fR \fISECTION\fR
+.RS 4
+Find the specified section
+.RE
+.PP
+\fB\-L\fR, \fB\-\-ldcache\fR
+.RS 4
+Utilize
+\FCld\&.so\&.cache\F[]
+information (use with
+\fB\-r\fR/\fB\-n\fR)
+.RE
+.PP
+\fB\-l\fR, \fB\-\-ldpath\fR
+.RS 4
+Scan all directories in
+\FC/etc/ld\&.so\&.conf\F[]
+.RE
+.PP
+\fB\-M\fR, \fB\-\-bits\fR \fIBITS\fR
+.RS 4
+Print only ELF files matching specified numeric bits (like 32/64)
+.RE
+.PP
+\fB\-D\fR, \fB\-\-endian\fR
+.RS 4
+Print Endianness
+.RE
+.PP
+\fB\-I\fR, \fB\-\-osabi\fR
+.RS 4
+Print OSABI
+.RE
+.PP
+\fB\-Y\fR, \fB\-\-eabi\fR
+.RS 4
+Print EABI (EM_ARM Only)
+.RE
+.PP
+\fB\-O\fR, \fB\-\-perms\fR \fIPERMS\fR
+.RS 4
+Print only ELF files with matching specified octal bits (like 755)
+.RE
+.PP
+\fB\-Z\fR, \fB\-\-size\fR \fISIZE\fR
+.RS 4
+Print ELF file size
+.RE
+.PP
+\fB\-m\fR, \fB\-\-mount\fR
+.RS 4
+Don\'t recursively cross mount points
+.RE
+.PP
+\fB\-N\fR, \fB\-\-lib\fR \fISONAME\fR
+.RS 4
+Find ELFs that need the specified SONAME
+.RE
+.PP
+\fB\-n\fR, \fB\-\-needed\fR
+.RS 4
+Print NEEDED information
+.RE
+.PP
+\fB\-o\fR, \fB\-\-file\fR \fIFILE\fR
+.RS 4
+Write output stream to specified filename
+.RE
+.PP
+\fB\-p\fR, \fB\-\-path\fR
+.RS 4
+Scan all directories in PATH environment
+.RE
+.PP
+\fB\-q\fR, \fB\-\-quiet\fR
+.RS 4
+Only output \'bad\' things\&.
+.RE
+.PP
+\fB\-R\fR, \fB\-\-recursive\fR
+.RS 4
+Scan directories recursively
+.RE
+.PP
+\fB\-r\fR, \fB\-\-rpath\fR
+.RS 4
+Print RUNPATH information
+.RE
+.PP
+\fB\-S\fR, \fB\-\-soname\fR
+.RS 4
+Print SONAME information
+.RE
+.PP
+\fB\-s\fR, \fB\-\-symbol\fR \fISYMBOL\fR
+.RS 4
+Find the specified symbol; a
+\fB\-\fR
+prefix will only show undefined references while a
+\fB+\fR
+prefix will only show defined references while no prefix will show both
+.RE
+.PP
+\fB\-T\fR, \fB\-\-textrels\fR
+.RS 4
+Locate cause of TEXTRELs
+.RE
+.PP
+\fB\-t\fR, \fB\-\-textrel\fR
+.RS 4
+Print TEXTREL information
+.RE
+.PP
+\fB\-V\fR, \fB\-\-version\fR
+.RS 4
+Print version and exit
+.RE
+.PP
+\fB\-v\fR, \fB\-\-verbose\fR
+.RS 4
+Be verbose (can be used more than once)
+.RE
+.PP
+\fB\-X\fR, \fB\-\-fix\fR
+.RS 4
+Try and \'fix\' bad things (use with
+\fB\-r\fR/\fB\-e\fR)
+.RE
+.PP
+\fB\-x\fR, \fB\-\-pax\fR
+.RS 4
+Print PaX markings
+.RE
+.PP
+\fB\-y\fR, \fB\-\-symlink\fR
+.RS 4
+Don\'t scan symlinks
+.RE
+.PP
+\fB\-z\fR, \fB\-\-setpax\fR \fIFLAGS\fR
+.RS 4
+Sets EI_PAX/PT_PAX_FLAGS to specified flags (use with
+\fB\-Xx\fR)
+.RE
+.SH "FORMAT"
+.PP
+The format string is much like a printf string in that it is a literal string with flags requesting different information\&. For example, you could use a format string and expect the following results\&.
+.sp
+.if n \{\
+.RS 4
+.\}
+.fam C
+.ps -1
+.nf
+.if t \{\
+.sp -1
+.\}
+.BB lightgray adjust-for-leading-newline
+.sp -1
+
+  # \fBscanelf\fR \fB\-BF\fR \'file %f needs %n; funky time!\' /bin/bash
+  file bash needs libncurses\&.so\&.5,libdl\&.so\&.2,libc\&.so\&.6; funky time!
+ 
+.EB lightgray adjust-for-leading-newline
+.if t \{\
+.sp 1
+.\}
+.fi
+.fam
+.ps +1
+.if n \{\
+.RE
+.\}
+.PP
+Note that when you use a format string, generally information related flags should be omitted\&. In other words, you do not want to try and request NEEDED output (\fB\-n\fR) and try to specify a format output at the sametime as these operations are mutually exclusive\&. Each information related flag has an equivalent conversion specifier, so use those instead\&. You can of course continue to use non\-information related flags (such as
+\fB\-\-verbose\fR)\&.
+.PP
+There are three characters that introduce conversion specifiers\&.
+\(bu
+\fB%\fR
+\- replace with info
+.sp -1
+.TP 4
+\(bu
+\fB#\fR
+\- silent boolean match
+.sp -1
+.TP 4
+\(bu
+\fB+\fR
+\- verbose match
+.sp
+.RE
+.PP
+And there are a number of conversion specifiers\&. We try to match up the specifier with corresponding option\&.
+\(bu
+\fBa\fR
+\- machine (EM) type
+.sp -1
+.TP 4
+\(bu
+\fBb\fR
+\- bind flags
+.sp -1
+.TP 4
+\(bu
+\fBe\fR
+\- program headers
+.sp -1
+.TP 4
+\(bu
+\fBD\fR
+\- endian
+.sp -1
+.TP 4
+\(bu
+\fBI\fR
+\- osabi
+.sp -1
+.TP 4
+\(bu
+\fBY\fR
+\- eabi
+.sp -1
+.TP 4
+\(bu
+\fBF\fR
+\- long filename
+.sp -1
+.TP 4
+\(bu
+\fBf\fR
+\- short filename
+.sp -1
+.TP 4
+\(bu
+\fBi\fR
+\- interp
+.sp -1
+.TP 4
+\(bu
+\fBk\fR
+\- section
+.sp -1
+.TP 4
+\(bu
+\fBM\fR
+\- EI class
+.sp -1
+.TP 4
+\(bu
+\fBN\fR
+\- specified needed
+.sp -1
+.TP 4
+\(bu
+\fBn\fR
+\- needed libraries
+.sp -1
+.TP 4
+\(bu
+\fBp\fR
+\- filename (minus search)
+.sp -1
+.TP 4
+\(bu
+\fBo\fR
+\- etype
+.sp -1
+.TP 4
+\(bu
+\fBO\fR
+\- perms
+.sp -1
+.TP 4
+\(bu
+\fBr\fR
+\- runpaths
+.sp -1
+.TP 4
+\(bu
+\fBS\fR
+\- SONAME
+.sp -1
+.TP 4
+\(bu
+\fBs\fR
+\- symbol
+.sp -1
+.TP 4
+\(bu
+\fBT\fR
+\- all textrels
+.sp -1
+.TP 4
+\(bu
+\fBt\fR
+\- textrel status
+.sp -1
+.TP 4
+\(bu
+\fBx\fR
+\- pax flags
+.sp
+.RE
+.SH "ELF ETYPES"
+.PP
+You can narrow your search by specifying the ELF object file type (ETYPE)\&. The commandline option takes the numeric value and or symbolic type\&. Multiple values can be passed comma separated\&. Example \-E ET_EXEC,ET_DYN,1
+.PP
+Here is the normal list available for your pleasure\&. You of course are free to specify any numeric value you want\&.
+\(bu
+\fB0 \- ET_NONE\fR
+\- unknown type
+.sp -1
+.TP 4
+\(bu
+\fB1 \- ET_REL\fR
+\- relocatable file
+.sp -1
+.TP 4
+\(bu
+\fB2 \- ET_EXEC\fR
+\- executable file
+.sp -1
+.TP 4
+\(bu
+\fB3 \- ET_DYN\fR
+\- shared object
+.sp -1
+.TP 4
+\(bu
+\fB4 \- ET_CORE\fR
+\- core file
+.sp
+.RE
+.SH "ELF BITS"
+.PP
+You can also narrow your search by specifying the ELF bitsize\&. Again, specify the numeric value or the symbolic define\&.
+\(bu
+\fB32 \- ELFCLASS32\fR
+\- 32bit ELFs
+.sp -1
+.TP 4
+\(bu
+\fB64 \- ELFCLASS64\fR
+\- 64bit ELFs
+.sp
+.RE
+.SH "HOMEPAGE"
+.PP
+http://hardened\&.gentoo\&.org/pax\-utils\&.xml
+.SH "REPORTING BUGS"
+.PP
+Please include as much information as possible (using any available debugging options) and send bug reports to the maintainers (see the
+\fBAUTHORS\fR
+section)\&.
+.SH "SEE ALSO"
+.PP
+
+\fBchpax\fR(1),
+\fBdumpelf\fR(1),
+\fBpaxctl\fR(1),
+\fBpspax\fR(1),
+\fBreadelf\fR(1),
+\fBscanelf\fR(1)
+.SH "Authors"
+.PP
+\fBNed Ludd\fR <\&solar@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBMike Frysinger\fR <\&vapier@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBFabian Groffen\fR <\&grobian@gentoo.org\&>
+.RS 4
+Mach-O Maintainer
+.RE

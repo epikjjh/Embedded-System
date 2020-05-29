@@ -1,0 +1,2359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>SoupMessage</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.71.1">
+<link rel="start" href="index.html" title="libsoup Reference Manual">
+<link rel="up" href="ch02.html" title="libsoup API Reference">
+<link rel="prev" href="SoupConnectionNTLM.html" title="SoupConnectionNTLM">
+<link rel="next" href="libsoup-SoupMessageFilter.html" title="SoupMessageFilter">
+<meta name="generator" content="GTK-Doc V1.7 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="libsoup Tutorial">
+<link rel="chapter" href="ch02.html" title="libsoup API Reference">
+<link rel="chapter" href="ch03.html" title="libsoup internals">
+<link rel="index" href="ix01.html" title="Index">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="SoupConnectionNTLM.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libsoup Reference Manual</th>
+<td><a accesskey="n" href="libsoup-SoupMessageFilter.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id337193" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id371680" class="shortcut">Description</a>
+                  &#160;|&#160;
+                  <a href="#id371420" class="shortcut">Object Hierarchy</a>
+                  &#160;|&#160;
+                  <a href="#id371457" class="shortcut">Signals</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="SoupMessage"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id337193"></a><span class="refentrytitle">SoupMessage</span>
+</h2>
+<p>SoupMessage &#8212; An HTTP request and response.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+struct      <a href="SoupMessage.html#SoupMessage-struct">SoupMessage</a>;
+enum        <a href="SoupMessage.html#SoupMessageStatus">SoupMessageStatus</a>;
+#define     <a href="SoupMessage.html#SOUP-MESSAGE-IS-STARTING:CAPS">SOUP_MESSAGE_IS_STARTING</a>        (msg)
+enum        <a href="SoupMessage.html#SoupTransferEncoding">SoupTransferEncoding</a>;
+enum        <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a>;
+            <a href="SoupMessage.html#SoupDataBuffer">SoupDataBuffer</a>;
+void        (<a href="SoupMessage.html#SoupMessageCallbackFn">*SoupMessageCallbackFn</a>)        (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *req,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+
+<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a>* <a href="SoupMessage.html#soup-message-new">soup_message_new</a>               (const char *method,
+                                             const char *uri_string);
+<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a>* <a href="SoupMessage.html#soup-message-new-from-uri">soup_message_new_from_uri</a>      (const char *method,
+                                             const <a href="libsoup-SoupUri.html#SoupUri">SoupUri</a> *uri);
+void        <a href="SoupMessage.html#soup-message-set-request">soup_message_set_request</a>        (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const char *content_type,
+                                             <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a> req_owner,
+                                             char *req_body,
+                                             <a
+href="../glib/glib-Basic-Types.html#gulong"
+>gulong</a> req_length);
+void        <a href="SoupMessage.html#soup-message-set-response">soup_message_set_response</a>       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const char *content_type,
+                                             <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a> resp_owner,
+                                             char *resp_body,
+                                             <a
+href="../glib/glib-Basic-Types.html#gulong"
+>gulong</a> resp_length);
+
+void        <a href="SoupMessage.html#soup-message-add-header">soup_message_add_header</a>         (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name,
+                                             const char *value);
+const char* <a href="SoupMessage.html#soup-message-get-header">soup_message_get_header</a>         (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name);
+const <a
+href="../glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>* <a href="SoupMessage.html#soup-message-get-header-list">soup_message_get_header_list</a>  (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name);
+void        <a href="SoupMessage.html#soup-message-foreach-header">soup_message_foreach_header</a>     (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             <a
+href="../glib/glib-Hash-Tables.html#GHFunc"
+>GHFunc</a> func,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void        <a href="SoupMessage.html#soup-message-remove-header">soup_message_remove_header</a>      (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name);
+void        <a href="SoupMessage.html#soup-message-clear-headers">soup_message_clear_headers</a>      (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash);
+
+enum        <a href="SoupMessage.html#SoupHttpVersion">SoupHttpVersion</a>;
+void        <a href="SoupMessage.html#soup-message-set-http-version">soup_message_set_http_version</a>   (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupHttpVersion">SoupHttpVersion</a> version);
+<a href="SoupMessage.html#SoupHttpVersion">SoupHttpVersion</a> <a href="SoupMessage.html#soup-message-get-http-version">soup_message_get_http_version</a>
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+const <a href="libsoup-SoupUri.html#SoupUri">SoupUri</a>* <a href="SoupMessage.html#soup-message-get-uri">soup_message_get_uri</a>         (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+void        <a href="SoupMessage.html#soup-message-set-uri">soup_message_set_uri</a>            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const <a href="libsoup-SoupUri.html#SoupUri">SoupUri</a> *uri);
+enum        <a href="SoupMessage.html#SoupMessageFlags">SoupMessageFlags</a>;
+void        <a href="SoupMessage.html#soup-message-set-flags">soup_message_set_flags</a>          (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> flags);
+<a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>       <a href="SoupMessage.html#soup-message-get-flags">soup_message_get_flags</a>          (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+
+void        <a href="SoupMessage.html#soup-message-set-status">soup_message_set_status</a>         (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> status_code);
+void        <a href="SoupMessage.html#soup-message-set-status-full">soup_message_set_status_full</a>    (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> status_code,
+                                             const char *reason_phrase);
+void        <a href="SoupMessage.html#soup-message-add-chunk">soup_message_add_chunk</a>          (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a> owner,
+                                             const char *body,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> length);
+void        <a href="SoupMessage.html#soup-message-add-final-chunk">soup_message_add_final_chunk</a>    (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+<a href="SoupMessage.html#SoupDataBuffer">SoupDataBuffer</a>* <a href="SoupMessage.html#soup-message-pop-chunk">soup_message_pop_chunk</a>      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+<a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    <a href="SoupMessage.html#soup-message-is-keepalive">soup_message_is_keepalive</a>       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+<a href="SoupMessage.html#SoupTransferEncoding">SoupTransferEncoding</a> <a href="SoupMessage.html#soup-message-get-request-encoding">soup_message_get_request_encoding</a>
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> *content_length);
+<a href="SoupMessage.html#SoupTransferEncoding">SoupTransferEncoding</a> <a href="SoupMessage.html#soup-message-get-response-encoding">soup_message_get_response_encoding</a>
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> *content_length);
+
+enum        <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a>;
+void        <a href="SoupMessage.html#soup-message-add-handler">soup_message_add_handler</a>        (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void        <a href="SoupMessage.html#soup-message-add-header-handler">soup_message_add_header_handler</a> (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const char *header,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void        <a href="SoupMessage.html#soup-message-add-status-code-handler">soup_message_add_status_code_handler</a>
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> status_code,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void        <a href="SoupMessage.html#soup-message-add-status-class-handler">soup_message_add_status_class_handler</a>
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="libsoup-soup-status.html#SoupStatusClass">SoupStatusClass</a> status_class,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+void        <a href="SoupMessage.html#soup-message-remove-handler">soup_message_remove_handler</a>     (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+
+void        <a href="SoupMessage.html#soup-message-send-request">soup_message_send_request</a>       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *req,
+                                             <a href="SoupSocket.html" title="SoupSocket">SoupSocket</a> *sock,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> is_via_proxy);
+void        <a href="SoupMessage.html#soup-message-read-request">soup_message_read_request</a>       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *req,
+                                             <a href="SoupSocket.html" title="SoupSocket">SoupSocket</a> *sock);
+void        <a href="SoupMessage.html#soup-message-io-pause">soup_message_io_pause</a>           (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+void        <a href="SoupMessage.html#soup-message-io-unpause">soup_message_io_unpause</a>         (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+void        <a href="SoupMessage.html#soup-message-io-stop">soup_message_io_stop</a>            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);
+
+
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id371420"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  <a
+href="../gobject/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----SoupMessage
+         +----<a href="SoupServerMessage.html" title="SoupServerMessage">SoupServerMessage</a>
+         +----<a href="SoupSoapMessage.html" title="SoupSoapMessage">SoupSoapMessage</a>
+         +----<a href="SoupXmlrpcMessage.html" title="SoupXmlrpcMessage">SoupXmlrpcMessage</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id371457"></a><h2>Signals</h2>
+<pre class="synopsis">
+
+"<a href="SoupMessage.html#SoupMessage-finished">finished</a>"  void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-got-body">got-body</a>"  void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-got-chunk">got-chunk</a>" void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-got-headers">got-headers</a>"
+            void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-got-informational">got-informational</a>"
+            void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-restarted">restarted</a>" void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-wrote-body">wrote-body</a>"
+            void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-wrote-chunk">wrote-chunk</a>"
+            void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-wrote-headers">wrote-headers</a>"
+            void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+"<a href="SoupMessage.html#SoupMessage-wrote-informational">wrote-informational</a>"
+            void        user_function      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id371680"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id371694"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id371703"></a><h3>
+<a name="SoupMessage-struct"></a>struct SoupMessage</h3>
+<a class="indexterm" name="id371714"></a><pre class="programlisting">struct SoupMessage {
+	const char         *method;
+
+	guint               status_code;
+	const char         *reason_phrase;
+
+	SoupDataBuffer      request;
+	GHashTable         *request_headers;
+
+	SoupDataBuffer      response;
+	GHashTable         *response_headers;
+
+	SoupMessageStatus   status;
+};
+</pre>
+<p>
+Represents an HTTP message being sent or received.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term">const&#160;char&#160;*<em class="structfield"><code>method</code></em>;</span></td>
+<td> the HTTP method
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>&#160;<em class="structfield"><code>status_code</code></em>;</span></td>
+<td> the HTTP status code
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">const&#160;char&#160;*<em class="structfield"><code>reason_phrase</code></em>;</span></td>
+<td> the status phrase associated with <em class="parameter"><code>status_code</code></em>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a href="SoupMessage.html#SoupDataBuffer">SoupDataBuffer</a>&#160;<em class="structfield"><code>request</code></em>;</span></td>
+<td> the request buffer
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a>&#160;*<em class="structfield"><code>request_headers</code></em>;</span></td>
+<td> the request headers
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a href="SoupMessage.html#SoupDataBuffer">SoupDataBuffer</a>&#160;<em class="structfield"><code>response</code></em>;</span></td>
+<td> the response buffer
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a>&#160;*<em class="structfield"><code>response_headers</code></em>;</span></td>
+<td> the response headers
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a href="SoupMessage.html#SoupMessageStatus">SoupMessageStatus</a>&#160;<em class="structfield"><code>status</code></em>;</span></td>
+<td> the processing status of the message
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id371888"></a><h3>
+<a name="SoupMessageStatus"></a>enum SoupMessageStatus</h3>
+<a class="indexterm" name="id371899"></a><pre class="programlisting">typedef enum {
+	SOUP_MESSAGE_STATUS_IDLE,
+	SOUP_MESSAGE_STATUS_QUEUED,
+        SOUP_MESSAGE_STATUS_CONNECTING,
+        SOUP_MESSAGE_STATUS_RUNNING,
+	SOUP_MESSAGE_STATUS_FINISHED
+} SoupMessageStatus;
+</pre>
+<p>
+Enum indicating the lifecycle of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-STATUS-IDLE:CAPS"></a><code class="literal">SOUP_MESSAGE_STATUS_IDLE</code></span></td>
+<td> The message has not yet been queued.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-STATUS-QUEUED:CAPS"></a><code class="literal">SOUP_MESSAGE_STATUS_QUEUED</code></span></td>
+<td> The message has been queued, but is
+waiting for a connection to be available.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-STATUS-CONNECTING:CAPS"></a><code class="literal">SOUP_MESSAGE_STATUS_CONNECTING</code></span></td>
+<td> The message is waiting for a
+specific connection to finish connecting.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-STATUS-RUNNING:CAPS"></a><code class="literal">SOUP_MESSAGE_STATUS_RUNNING</code></span></td>
+<td> The message is being processed.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-STATUS-FINISHED:CAPS"></a><code class="literal">SOUP_MESSAGE_STATUS_FINISHED</code></span></td>
+<td> The message is complete (request and
+response both processed).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372024"></a><h3>
+<a name="SOUP-MESSAGE-IS-STARTING:CAPS"></a>SOUP_MESSAGE_IS_STARTING()</h3>
+<a class="indexterm" name="id372034"></a><pre class="programlisting">#define SOUP_MESSAGE_IS_STARTING(msg) (msg-&gt;status == SOUP_MESSAGE_STATUS_QUEUED || msg-&gt;status == SOUP_MESSAGE_STATUS_CONNECTING)
+</pre>
+<p>
+Tests if <em class="parameter"><code>msg</code></em> is in a "starting" state, waiting to be sent. (More
+commonly used to test if a message has been requeued after its
+first attempt.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>msg</code></em> is waiting to be sent.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372105"></a><h3>
+<a name="SoupTransferEncoding"></a>enum SoupTransferEncoding</h3>
+<a class="indexterm" name="id372115"></a><pre class="programlisting">typedef enum {
+	SOUP_TRANSFER_UNKNOWN = 0,
+	SOUP_TRANSFER_CHUNKED,
+	SOUP_TRANSFER_CONTENT_LENGTH,
+	SOUP_TRANSFER_BYTERANGES,
+	SOUP_TRANSFER_NONE,
+	SOUP_TRANSFER_EOF
+} SoupTransferEncoding;
+</pre>
+<p>
+How the length of a request or response is to be encoded.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a name="SOUP-TRANSFER-UNKNOWN:CAPS"></a><code class="literal">SOUP_TRANSFER_UNKNOWN</code></span></td>
+<td> unknown / error
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-TRANSFER-CHUNKED:CAPS"></a><code class="literal">SOUP_TRANSFER_CHUNKED</code></span></td>
+<td> chunked encoding (currently only supported
+for response)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-TRANSFER-CONTENT-LENGTH:CAPS"></a><code class="literal">SOUP_TRANSFER_CONTENT_LENGTH</code></span></td>
+<td> Content-Length encoding
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-TRANSFER-BYTERANGES:CAPS"></a><code class="literal">SOUP_TRANSFER_BYTERANGES</code></span></td>
+<td> multipart/byteranges (Reserved for future
+use: NOT CURRENTLY IMPLEMENTED)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-TRANSFER-NONE:CAPS"></a><code class="literal">SOUP_TRANSFER_NONE</code></span></td>
+<td> no body is present (which is not the same as a
+0-length body, and only occurs in certain places)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-TRANSFER-EOF:CAPS"></a><code class="literal">SOUP_TRANSFER_EOF</code></span></td>
+<td> Response body ends when the connection is closed
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372254"></a><h3>
+<a name="SoupOwnership"></a>enum SoupOwnership</h3>
+<a class="indexterm" name="id372264"></a><pre class="programlisting">typedef enum {
+	SOUP_BUFFER_SYSTEM_OWNED = 0,
+	SOUP_BUFFER_USER_OWNED,
+	SOUP_BUFFER_STATIC
+} SoupOwnership;
+</pre>
+<p>
+Used by <a href="SoupMessage.html#SoupDataBuffer"><span class="type">SoupDataBuffer</span></a> (and several functions) to indicate the
+ownership of a buffer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a name="SOUP-BUFFER-SYSTEM-OWNED:CAPS"></a><code class="literal">SOUP_BUFFER_SYSTEM_OWNED</code></span></td>
+<td> The data is owned by soup and it can
+free it when it is done with it.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-BUFFER-USER-OWNED:CAPS"></a><code class="literal">SOUP_BUFFER_USER_OWNED</code></span></td>
+<td> The data is owned by the user, who is
+responsible for freeing it at the right point
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-BUFFER-STATIC:CAPS"></a><code class="literal">SOUP_BUFFER_STATIC</code></span></td>
+<td> The data should not be freed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372351"></a><h3>
+<a name="SoupDataBuffer"></a>SoupDataBuffer</h3>
+<a class="indexterm" name="id372362"></a><pre class="programlisting">typedef struct {
+	SoupOwnership  owner;
+	char          *body;
+	guint          length;
+} SoupDataBuffer;
+</pre>
+<p>
+A data buffer used in several places.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a href="SoupMessage.html#SoupOwnership">SoupOwnership</a>&#160;<em class="structfield"><code>owner</code></em>;</span></td>
+<td> the ownership of the data
+</td>
+</tr>
+<tr>
+<td>
+<span class="term">char&#160;*<em class="structfield"><code>body</code></em>;</span></td>
+<td> the data itself
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>&#160;<em class="structfield"><code>length</code></em>;</span></td>
+<td> length of <em class="parameter"><code>body</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372443"></a><h3>
+<a name="SoupMessageCallbackFn"></a>SoupMessageCallbackFn ()</h3>
+<a class="indexterm" name="id372453"></a><pre class="programlisting">void        (*SoupMessageCallbackFn)        (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *req,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+A callback function used by many <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a> methods.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>req</code></em>&#160;:</span></td>
+<td> the <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a> in question
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> user data
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372526"></a><h3>
+<a name="soup-message-new"></a>soup_message_new ()</h3>
+<a class="indexterm" name="id372537"></a><pre class="programlisting"><a href="SoupMessage.html" title="SoupMessage">SoupMessage</a>* soup_message_new               (const char *method,
+                                             const char *uri_string);</pre>
+<p>
+Creates a new empty <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>, which will connect to <em class="parameter"><code>uri</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>method</code></em>&#160;:</span></td>
+<td> the HTTP method for the created request
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>uri_string</code></em>&#160;:</span></td>
+<td> the destination endpoint (as a string)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a> (or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if <em class="parameter"><code>uri</code></em> could not
+be parsed).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372638"></a><h3>
+<a name="soup-message-new-from-uri"></a>soup_message_new_from_uri ()</h3>
+<a class="indexterm" name="id372648"></a><pre class="programlisting"><a href="SoupMessage.html" title="SoupMessage">SoupMessage</a>* soup_message_new_from_uri      (const char *method,
+                                             const <a href="libsoup-SoupUri.html#SoupUri">SoupUri</a> *uri);</pre>
+<p>
+Creates a new empty <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>, which will connect to <em class="parameter"><code>uri</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>method</code></em>&#160;:</span></td>
+<td> the HTTP method for the created request
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>uri</code></em>&#160;:</span></td>
+<td> the destination endpoint (as a <a href="libsoup-SoupUri.html#SoupUri"><span class="type">SoupUri</span></a>)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the new <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372742"></a><h3>
+<a name="soup-message-set-request"></a>soup_message_set_request ()</h3>
+<a class="indexterm" name="id372753"></a><pre class="programlisting">void        soup_message_set_request        (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const char *content_type,
+                                             <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a> req_owner,
+                                             char *req_body,
+                                             <a
+href="../glib/glib-Basic-Types.html#gulong"
+>gulong</a> req_length);</pre>
+<p>
+Convenience function to set the request body of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>content_type</code></em>&#160;:</span></td>
+<td> MIME Content-Type of the body
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>req_owner</code></em>&#160;:</span></td>
+<td> the <a href="SoupMessage.html#SoupOwnership"><span class="type">SoupOwnership</span></a> of the passed data buffer.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>req_body</code></em>&#160;:</span></td>
+<td> a data buffer containing the body of the message request.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>req_length</code></em>&#160;:</span></td>
+<td> the byte length of <em class="parameter"><code>req_body</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id372887"></a><h3>
+<a name="soup-message-set-response"></a>soup_message_set_response ()</h3>
+<a class="indexterm" name="id372898"></a><pre class="programlisting">void        soup_message_set_response       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const char *content_type,
+                                             <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a> resp_owner,
+                                             char *resp_body,
+                                             <a
+href="../glib/glib-Basic-Types.html#gulong"
+>gulong</a> resp_length);</pre>
+<p>
+Convenience function to set the response body of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>content_type</code></em>&#160;:</span></td>
+<td> MIME Content-Type of the body
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>resp_owner</code></em>&#160;:</span></td>
+<td> the <a href="SoupMessage.html#SoupOwnership"><span class="type">SoupOwnership</span></a> of the passed data buffer.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>resp_body</code></em>&#160;:</span></td>
+<td> a data buffer containing the body of the message response.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>resp_length</code></em>&#160;:</span></td>
+<td> the byte length of <em class="parameter"><code>resp_body</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373032"></a><h3>
+<a name="soup-message-add-header"></a>soup_message_add_header ()</h3>
+<a class="indexterm" name="id373042"></a><pre class="programlisting">void        soup_message_add_header         (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name,
+                                             const char *value);</pre>
+<p>
+Adds a header with name <em class="parameter"><code>name</code></em> and value <em class="parameter"><code>value</code></em> to <em class="parameter"><code>hash</code></em>. If there
+was already a header with name <em class="parameter"><code>name</code></em>, this one does not replace it,
+it is merely added to it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>hash</code></em>&#160;:</span></td>
+<td> a header table (the <code class="literal">request_headers</code> or <code class="literal">response_headers</code>
+field of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>name</code></em>&#160;:</span></td>
+<td> the header name to add
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>value</code></em>&#160;:</span></td>
+<td> the value of the new header
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373167"></a><h3>
+<a name="soup-message-get-header"></a>soup_message_get_header ()</h3>
+<a class="indexterm" name="id373177"></a><pre class="programlisting">const char* soup_message_get_header         (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name);</pre>
+<p>
+Finds the first header in <em class="parameter"><code>hash</code></em> with name <em class="parameter"><code>name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>hash</code></em>&#160;:</span></td>
+<td> a header table (the <code class="literal">request_headers</code> or <code class="literal">response_headers</code>
+field of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>name</code></em>&#160;:</span></td>
+<td> header name.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the header's value or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if not found.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373291"></a><h3>
+<a name="soup-message-get-header-list"></a>soup_message_get_header_list ()</h3>
+<a class="indexterm" name="id373301"></a><pre class="programlisting">const <a
+href="../glib/glib-Singly-Linked-Lists.html#GSList"
+>GSList</a>* soup_message_get_header_list  (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name);</pre>
+<p>
+Finds all headers in <em class="parameter"><code>hash</code></em> with name <em class="parameter"><code>name</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>hash</code></em>&#160;:</span></td>
+<td> a header table (the <code class="literal">request_headers</code> or <code class="literal">response_headers</code>
+field of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>name</code></em>&#160;:</span></td>
+<td> header name.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a (possibly empty) list of values of headers with
+name <em class="parameter"><code>name</code></em>. The caller should not modify or free this list.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373412"></a><h3>
+<a name="soup-message-foreach-header"></a>soup_message_foreach_header ()</h3>
+<a class="indexterm" name="id373423"></a><pre class="programlisting">void        soup_message_foreach_header     (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             <a
+href="../glib/glib-Hash-Tables.html#GHFunc"
+>GHFunc</a> func,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Calls <em class="parameter"><code>func</code></em> once for each header value in <em class="parameter"><code>hash</code></em>. (If there are
+headers will multiple values, <em class="parameter"><code>func</code></em> will be called once on each
+value.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>hash</code></em>&#160;:</span></td>
+<td> a header table (the <code class="literal">request_headers</code> or <code class="literal">response_headers</code>
+field of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>func</code></em>&#160;:</span></td>
+<td> callback function to run for each header
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> data to pass to <em class="parameter"><code>func</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373545"></a><h3>
+<a name="soup-message-remove-header"></a>soup_message_remove_header ()</h3>
+<a class="indexterm" name="id373557"></a><pre class="programlisting">void        soup_message_remove_header      (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash,
+                                             const char *name);</pre>
+<p>
+Removes <em class="parameter"><code>name</code></em> from <em class="parameter"><code>hash</code></em>. If there are multiple values for <em class="parameter"><code>name</code></em>,
+they are all removed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>hash</code></em>&#160;:</span></td>
+<td> a header table (the <code class="literal">request_headers</code> or <code class="literal">response_headers</code>
+field of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>name</code></em>&#160;:</span></td>
+<td> the header name to remove
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373670"></a><h3>
+<a name="soup-message-clear-headers"></a>soup_message_clear_headers ()</h3>
+<a class="indexterm" name="id373684"></a><pre class="programlisting">void        soup_message_clear_headers      (<a
+href="../glib/glib-Hash-Tables.html#GHashTable"
+>GHashTable</a> *hash);</pre>
+<p>
+Clears <em class="parameter"><code>hash</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>hash</code></em>&#160;:</span></td>
+<td> a header table (the <code class="literal">request_headers</code> or <code class="literal">response_headers</code>
+field of a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>)
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373764"></a><h3>
+<a name="SoupHttpVersion"></a>enum SoupHttpVersion</h3>
+<a class="indexterm" name="id373777"></a><pre class="programlisting">typedef enum {
+	SOUP_HTTP_1_0 = 0,
+	SOUP_HTTP_1_1 = 1
+} SoupHttpVersion;
+</pre>
+<p>
+Indicates the HTTP protocol version being used.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a name="SOUP-HTTP-1-0:CAPS"></a><code class="literal">SOUP_HTTP_1_0</code></span></td>
+<td> HTTP 1.0 (RFC 1945)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-HTTP-1-1:CAPS"></a><code class="literal">SOUP_HTTP_1_1</code></span></td>
+<td> HTTP 1.1 (RFC 2616)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373846"></a><h3>
+<a name="soup-message-set-http-version"></a>soup_message_set_http_version ()</h3>
+<a class="indexterm" name="id373859"></a><pre class="programlisting">void        soup_message_set_http_version   (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupHttpVersion">SoupHttpVersion</a> version);</pre>
+<p>
+Sets the HTTP version on <em class="parameter"><code>msg</code></em>. The default version is
+<a href="SoupMessage.html#SOUP-HTTP-1-1:CAPS"><code class="literal">SOUP_HTTP_1_1</code></a>. Setting it to <a href="SoupMessage.html#SOUP-HTTP-1-0:CAPS"><code class="literal">SOUP_HTTP_1_0</code></a> will prevent certain
+functionality from being used.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>version</code></em>&#160;:</span></td>
+<td> the HTTP version
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id373961"></a><h3>
+<a name="soup-message-get-http-version"></a>soup_message_get_http_version ()</h3>
+<a class="indexterm" name="id373974"></a><pre class="programlisting"><a href="SoupMessage.html#SoupHttpVersion">SoupHttpVersion</a> soup_message_get_http_version
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Gets the HTTP version of <em class="parameter"><code>msg</code></em>. This is the minimum of the
+version from the request and the version from the response.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the HTTP version
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374048"></a><h3>
+<a name="soup-message-get-uri"></a>soup_message_get_uri ()</h3>
+<a class="indexterm" name="id374061"></a><pre class="programlisting">const <a href="libsoup-SoupUri.html#SoupUri">SoupUri</a>* soup_message_get_uri         (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Gets <em class="parameter"><code>msg</code></em>'s URI</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the URI <em class="parameter"><code>msg</code></em> is targeted for.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374141"></a><h3>
+<a name="soup-message-set-uri"></a>soup_message_set_uri ()</h3>
+<a class="indexterm" name="id374153"></a><pre class="programlisting">void        soup_message_set_uri            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const <a href="libsoup-SoupUri.html#SoupUri">SoupUri</a> *uri);</pre>
+<p>
+Sets <em class="parameter"><code>msg</code></em>'s URI to <em class="parameter"><code>uri</code></em>. If <em class="parameter"><code>msg</code></em> has already been sent and you want
+to re-send it with the new URI, you need to call
+<a href="SoupSession.html#soup-session-requeue-message"><code class="function">soup_session_requeue_message()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>uri</code></em>&#160;:</span></td>
+<td> the new <a href="libsoup-SoupUri.html#SoupUri"><span class="type">SoupUri</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374265"></a><h3>
+<a name="SoupMessageFlags"></a>enum SoupMessageFlags</h3>
+<a class="indexterm" name="id374278"></a><pre class="programlisting">typedef enum {
+	SOUP_MESSAGE_NO_REDIRECT      = (1 &lt;&lt; 1),
+	SOUP_MESSAGE_OVERWRITE_CHUNKS = (1 &lt;&lt; 3),
+	SOUP_MESSAGE_EXPECT_CONTINUE  = (1 &lt;&lt; 4)
+} SoupMessageFlags;
+</pre>
+<p>
+Various flags that can be set on a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a> to alter its
+behavior.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-NO-REDIRECT:CAPS"></a><code class="literal">SOUP_MESSAGE_NO_REDIRECT</code></span></td>
+<td> The session should not follow redirect
+(3xx) responses received by this message.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-OVERWRITE-CHUNKS:CAPS"></a><code class="literal">SOUP_MESSAGE_OVERWRITE_CHUNKS</code></span></td>
+<td> Rather than building up the
+response body in <code class="literal">response</code>, each new chunk should overwrite the
+previous one. (This can be used if you are connecting to the
+<code class="literal">got_chunk</code> signal or have installed a <code class="literal">SOUP_MESSAGE_BODY_CHUNK</code>
+handler.
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-MESSAGE-EXPECT-CONTINUE:CAPS"></a><code class="literal">SOUP_MESSAGE_EXPECT_CONTINUE</code></span></td>
+<td> This will cause an "Expect:
+100-continue" header to be added to the outgoing request, giving
+the server the opportunity to reject the message (eg, with a 401
+Unauthorized) before the full request body is sent.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374410"></a><h3>
+<a name="soup-message-set-flags"></a>soup_message_set_flags ()</h3>
+<a class="indexterm" name="id374423"></a><pre class="programlisting">void        soup_message_set_flags          (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> flags);</pre>
+<p>
+Sets the specified flags on <em class="parameter"><code>msg</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>flags</code></em>&#160;:</span></td>
+<td> a set of <a href="SoupMessage.html#SoupMessageFlags"><span class="type">SoupMessageFlags</span></a> values
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374513"></a><h3>
+<a name="soup-message-get-flags"></a>soup_message_get_flags ()</h3>
+<a class="indexterm" name="id374525"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a>       soup_message_get_flags          (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Gets the flags on <em class="parameter"><code>msg</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the flags
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374597"></a><h3>
+<a name="soup-message-set-status"></a>soup_message_set_status ()</h3>
+<a class="indexterm" name="id374609"></a><pre class="programlisting">void        soup_message_set_status         (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> status_code);</pre>
+<p>
+Sets <em class="parameter"><code>msg</code></em>'s status code to <em class="parameter"><code>status_code</code></em>. If <em class="parameter"><code>status_code</code></em> is a
+known value, it will also set <em class="parameter"><code>msg</code></em>'s reason_phrase.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>status_code</code></em>&#160;:</span></td>
+<td> an HTTP status code
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374710"></a><h3>
+<a name="soup-message-set-status-full"></a>soup_message_set_status_full ()</h3>
+<a class="indexterm" name="id374724"></a><pre class="programlisting">void        soup_message_set_status_full    (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> status_code,
+                                             const char *reason_phrase);</pre>
+<p>
+Sets <em class="parameter"><code>msg</code></em>'s status code and reason phrase.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>status_code</code></em>&#160;:</span></td>
+<td> an HTTP status code
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>reason_phrase</code></em>&#160;:</span></td>
+<td> a description of the status
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374827"></a><h3>
+<a name="soup-message-add-chunk"></a>soup_message_add_chunk ()</h3>
+<a class="indexterm" name="id374840"></a><pre class="programlisting">void        soup_message_add_chunk          (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupOwnership">SoupOwnership</a> owner,
+                                             const char *body,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> length);</pre>
+<p>
+Adds a chunk of response data to <em class="parameter"><code>body</code></em>. (Note that currently
+there is no way to send a request using chunked encoding.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>owner</code></em>&#160;:</span></td>
+<td> the ownership of <em class="parameter"><code>body</code></em>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>body</code></em>&#160;:</span></td>
+<td> body data
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>length</code></em>&#160;:</span></td>
+<td> length of <em class="parameter"><code>body</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id374977"></a><h3>
+<a name="soup-message-add-final-chunk"></a>soup_message_add_final_chunk ()</h3>
+<a class="indexterm" name="id374990"></a><pre class="programlisting">void        soup_message_add_final_chunk    (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Adds a final, empty chunk of response data to <em class="parameter"><code>body</code></em>. This must
+be called after adding the last real chunk, to indicate that
+there is no more data.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375053"></a><h3>
+<a name="soup-message-pop-chunk"></a>soup_message_pop_chunk ()</h3>
+<a class="indexterm" name="id375065"></a><pre class="programlisting"><a href="SoupMessage.html#SoupDataBuffer">SoupDataBuffer</a>* soup_message_pop_chunk      (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Pops a chunk of response data from <em class="parameter"><code>msg</code></em>'s chunk list. The caller
+must free <em class="parameter"><code>chunk</code></em> itself, and must handle the data in <em class="parameter"><code>chunk</code></em>
+according to its <code class="literal">ownership</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the chunk, or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> if there are no chunks left.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375169"></a><h3>
+<a name="soup-message-is-keepalive"></a>soup_message_is_keepalive ()</h3>
+<a class="indexterm" name="id375182"></a><pre class="programlisting"><a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a>    soup_message_is_keepalive       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Determines whether or not <em class="parameter"><code>msg</code></em>'s connection can be kept alive for
+further requests after processing <em class="parameter"><code>msg</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> or <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375280"></a><h3>
+<a name="soup-message-get-request-encoding"></a>soup_message_get_request_encoding ()</h3>
+<a class="indexterm" name="id375293"></a><pre class="programlisting"><a href="SoupMessage.html#SoupTransferEncoding">SoupTransferEncoding</a> soup_message_get_request_encoding
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> *content_length);</pre>
+<p>
+Gets <em class="parameter"><code>msg</code></em>'s request encoding. For an outgoing (client) request,
+this is only valid after the message has been fully set up (from
+the library's perspective, that means not until the message has
+been queued). For an incoming (server) request, this is valid after
+the request headers have been read and <em class="parameter"><code>msg-&gt;request_headers</code></em> filled
+in.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>content_length</code></em>&#160;:</span></td>
+<td> a pointer to store the Content-Length in (or
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the request encoding (which cannot be
+<a href="SoupMessage.html#SOUP-TRANSFER-UNKNOWN:CAPS"><code class="literal">SOUP_TRANSFER_UNKNOWN</code></a> or <a href="SoupMessage.html#SOUP-TRANSFER-EOF:CAPS"><code class="literal">SOUP_TRANSFER_EOF</code></a>). If it is
+<a href="SoupMessage.html#SOUP-TRANSFER-CONTENT-LENGTH:CAPS"><code class="literal">SOUP_TRANSFER_CONTENT_LENGTH</code></a>, *<em class="parameter"><code>content_length</code></em> will be set to the
+request body's length.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375440"></a><h3>
+<a name="soup-message-get-response-encoding"></a>soup_message_get_response_encoding ()</h3>
+<a class="indexterm" name="id375452"></a><pre class="programlisting"><a href="SoupMessage.html#SoupTransferEncoding">SoupTransferEncoding</a> soup_message_get_response_encoding
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> *content_length);</pre>
+<p>
+Gets <em class="parameter"><code>msg</code></em>'s response encoding. For an outgoing (client) request,
+this is only valid after the response headers have been read and
+<em class="parameter"><code>msg-&gt;response_headers</code></em> filled in. For an incoming (server) request,
+this is valid after the server handler has run.
+</p>
+<p>
+Note that the returned value is the encoding actually used on the
+wire; this will not agree with the response headers in some cases
+(eg, a HEAD response may have a Content-Length header, but will
+still be considered <a href="SoupMessage.html#SOUP-TRANSFER-NONE:CAPS"><code class="literal">SOUP_TRANSFER_NONE</code></a> by this function).</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>content_length</code></em>&#160;:</span></td>
+<td> a pointer to store the Content-Length in (or
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the response encoding (which will not be
+<a href="SoupMessage.html#SOUP-TRANSFER-UNKNOWN:CAPS"><code class="literal">SOUP_TRANSFER_UNKNOWN</code></a>). If it is <a href="SoupMessage.html#SOUP-TRANSFER-CONTENT-LENGTH:CAPS"><code class="literal">SOUP_TRANSFER_CONTENT_LENGTH</code></a>,
+*<em class="parameter"><code>content_length</code></em> will be set to the response body's length.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375604"></a><h3>
+<a name="SoupHandlerPhase"></a>enum SoupHandlerPhase</h3>
+<a class="indexterm" name="id375617"></a><pre class="programlisting">typedef enum {
+	SOUP_HANDLER_POST_REQUEST = 1,
+	SOUP_HANDLER_PRE_BODY,
+	SOUP_HANDLER_BODY_CHUNK,
+	SOUP_HANDLER_POST_BODY
+} SoupHandlerPhase;
+</pre>
+<p>
+Indicates when a handler added with <a href="SoupMessage.html#soup-message-add-handler"><code class="function">soup_message_add_handler()</code></a> or
+the like will be run.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><a name="SOUP-HANDLER-POST-REQUEST:CAPS"></a><code class="literal">SOUP_HANDLER_POST_REQUEST</code></span></td>
+<td> The handler should run immediately
+after sending the request body
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-HANDLER-PRE-BODY:CAPS"></a><code class="literal">SOUP_HANDLER_PRE_BODY</code></span></td>
+<td> The handler should run before reading the
+response body (after reading the headers).
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-HANDLER-BODY-CHUNK:CAPS"></a><code class="literal">SOUP_HANDLER_BODY_CHUNK</code></span></td>
+<td> The handler should run after every body
+chunk is read. (See also <a href="SoupMessage.html#SOUP-MESSAGE-OVERWRITE-CHUNKS:CAPS"><code class="literal">SOUP_MESSAGE_OVERWRITE_CHUNKS</code></a>.)
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><a name="SOUP-HANDLER-POST-BODY:CAPS"></a><code class="literal">SOUP_HANDLER_POST_BODY</code></span></td>
+<td> The handler should run after the entire
+message body has been read.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375753"></a><h3>
+<a name="soup-message-add-handler"></a>soup_message_add_handler ()</h3>
+<a class="indexterm" name="id375766"></a><pre class="programlisting">void        soup_message_add_handler        (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Adds a handler to <em class="parameter"><code>msg</code></em> for all messages</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>phase</code></em>&#160;:</span></td>
+<td> processing phase to run the handler in
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>handler_cb</code></em>&#160;:</span></td>
+<td> the handler
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> data to pass to <em class="parameter"><code>handler_cb</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375896"></a><h3>
+<a name="soup-message-add-header-handler"></a>soup_message_add_header_handler ()</h3>
+<a class="indexterm" name="id375909"></a><pre class="programlisting">void        soup_message_add_header_handler (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             const char *header,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Adds a handler to <em class="parameter"><code>msg</code></em> for messages containing the given response
+header.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>header</code></em>&#160;:</span></td>
+<td> HTTP response header to match against
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>phase</code></em>&#160;:</span></td>
+<td> processing phase to run the handler in
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>handler_cb</code></em>&#160;:</span></td>
+<td> the handler
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> data to pass to <em class="parameter"><code>handler_cb</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376060"></a><h3>
+<a name="soup-message-add-status-code-handler"></a>soup_message_add_status_code_handler ()</h3>
+<a class="indexterm" name="id376074"></a><pre class="programlisting">void        soup_message_add_status_code_handler
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a
+href="../glib/glib-Basic-Types.html#guint"
+>guint</a> status_code,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Adds a handler to <em class="parameter"><code>msg</code></em> for messages receiving the given status
+code.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>status_code</code></em>&#160;:</span></td>
+<td> HTTP status code to match against
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>phase</code></em>&#160;:</span></td>
+<td> processing phase to run the handler in
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>handler_cb</code></em>&#160;:</span></td>
+<td> the handler
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> data to pass to <em class="parameter"><code>handler_cb</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376225"></a><h3>
+<a name="soup-message-add-status-class-handler"></a>soup_message_add_status_class_handler ()</h3>
+<a class="indexterm" name="id376239"></a><pre class="programlisting">void        soup_message_add_status_class_handler
+                                            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="libsoup-soup-status.html#SoupStatusClass">SoupStatusClass</a> status_class,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Adds a handler to <em class="parameter"><code>msg</code></em> for messages receiving a status code in
+the given class.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>status_class</code></em>&#160;:</span></td>
+<td> HTTP status code class to match against
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>phase</code></em>&#160;:</span></td>
+<td> processing phase to run the handler in
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>handler_cb</code></em>&#160;:</span></td>
+<td> the handler
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> data to pass to <em class="parameter"><code>handler_cb</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376390"></a><h3>
+<a name="soup-message-remove-handler"></a>soup_message_remove_handler ()</h3>
+<a class="indexterm" name="id376403"></a><pre class="programlisting">void        soup_message_remove_handler     (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                             <a href="SoupMessage.html#SoupHandlerPhase">SoupHandlerPhase</a> phase,
+                                             <a href="SoupMessage.html#SoupMessageCallbackFn">SoupMessageCallbackFn</a> handler_cb,
+                                             <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Removes all matching handlers from <em class="parameter"><code>msg</code></em></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>phase</code></em>&#160;:</span></td>
+<td> processing phase to run the handler in
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>handler_cb</code></em>&#160;:</span></td>
+<td> the handler
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> data to pass to <em class="parameter"><code>handler_cb</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376532"></a><h3>
+<a name="soup-message-send-request"></a>soup_message_send_request ()</h3>
+<a class="indexterm" name="id376545"></a><pre class="programlisting">void        soup_message_send_request       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *req,
+                                             <a href="SoupSocket.html" title="SoupSocket">SoupSocket</a> *sock,
+                                             <a
+href="../glib/glib-Basic-Types.html#gboolean"
+>gboolean</a> is_via_proxy);</pre>
+<p>
+Begins the process of sending <em class="parameter"><code>msg</code></em> across <em class="parameter"><code>sock</code></em>. (If <em class="parameter"><code>sock</code></em> is
+synchronous, then <a href="SoupMessage.html#soup-message-send-request"><code class="function">soup_message_send_request()</code></a> won't return until
+the response has been received.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>req</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sock</code></em>&#160;:</span></td>
+<td> the <a href="SoupSocket.html" title="SoupSocket"><span class="type">SoupSocket</span></a> to send <em class="parameter"><code>req</code></em> on
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>is_via_proxy</code></em>&#160;:</span></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if <em class="parameter"><code>sock</code></em> is a connection to a proxy server
+rather than a direct connection to the desired HTTP server
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376700"></a><h3>
+<a name="soup-message-read-request"></a>soup_message_read_request ()</h3>
+<a class="indexterm" name="id376713"></a><pre class="programlisting">void        soup_message_read_request       (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *req,
+                                             <a href="SoupSocket.html" title="SoupSocket">SoupSocket</a> *sock);</pre>
+<p>
+Begins the process of receiving a request from <em class="parameter"><code>sock</code></em> into <em class="parameter"><code>req</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>req</code></em>&#160;:</span></td>
+<td> an empty <a href="SoupServerMessage.html" title="SoupServerMessage"><span class="type">SoupServerMessage</span></a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sock</code></em>&#160;:</span></td>
+<td> socket to receive the request on
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376802"></a><h3>
+<a name="soup-message-io-pause"></a>soup_message_io_pause ()</h3>
+<a class="indexterm" name="id376816"></a><pre class="programlisting">void        soup_message_io_pause           (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Pauses I/O on <em class="parameter"><code>msg</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376878"></a><h3>
+<a name="soup-message-io-unpause"></a>soup_message_io_unpause ()</h3>
+<a class="indexterm" name="id376890"></a><pre class="programlisting">void        soup_message_io_unpause         (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Resumes I/O on <em class="parameter"><code>msg</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id376953"></a><h3>
+<a name="soup-message-io-stop"></a>soup_message_io_stop ()</h3>
+<a class="indexterm" name="id376965"></a><pre class="programlisting">void        soup_message_io_stop            (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg);</pre>
+<p>
+Immediately stops I/O on msg; if the connection would be left in an
+inconsistent state, it will be closed.
+</p>
+<p>
+Note: this is a low-level function that does not cause any signals
+to be emitted on <em class="parameter"><code>msg</code></em>; it is up to the caller to make sure that
+<em class="parameter"><code>msg</code></em> doesn't get "stranded".</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> a <a href="SoupMessage.html" title="SoupMessage"><span class="type">SoupMessage</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id377040"></a><h2>Signal Details</h2>
+<div class="refsect2" lang="en">
+<a name="id377051"></a><h3>
+<a name="SoupMessage-finished"></a>The "finished" signal</h3>
+<a class="indexterm" name="id377060"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted when all HTTP processing is finished for a message.
+(After <span class="type">read-body</span> for client-side code, or after
+<span class="type">wrote-body</span> for server-side code.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377144"></a><h3>
+<a name="SoupMessage-got-body"></a>The "got-body" signal</h3>
+<a class="indexterm" name="id377152"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted after receiving the complete message body.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377221"></a><h3>
+<a name="SoupMessage-got-chunk"></a>The "got-chunk" signal</h3>
+<a class="indexterm" name="id377231"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted after receiving a chunk of a message body. Note
+that "chunk" in this context means any subpiece of the
+body, not necessarily the specific HTTP 1.1 chunks sent by
+the other side.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377301"></a><h3>
+<a name="SoupMessage-got-headers"></a>The "got-headers" signal</h3>
+<a class="indexterm" name="id377310"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted after receiving all message headers for a message.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377379"></a><h3>
+<a name="SoupMessage-got-informational"></a>The "got-informational" signal</h3>
+<a class="indexterm" name="id377389"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted after receiving a 1xx (Informational) response for
+a message.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377458"></a><h3>
+<a name="SoupMessage-restarted"></a>The "restarted" signal</h3>
+<a class="indexterm" name="id377467"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted when a message is about to be re-queued.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377536"></a><h3>
+<a name="SoupMessage-wrote-body"></a>The "wrote-body" signal</h3>
+<a class="indexterm" name="id377546"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted immediately after writing the complete body for a message.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377615"></a><h3>
+<a name="SoupMessage-wrote-chunk"></a>The "wrote-chunk" signal</h3>
+<a class="indexterm" name="id377624"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted immediately after writing a body chunk for a message.
+(This is</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377693"></a><h3>
+<a name="SoupMessage-wrote-headers"></a>The "wrote-headers" signal</h3>
+<a class="indexterm" name="id377702"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted immediately after writing the headers for a message.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id377772"></a><h3>
+<a name="SoupMessage-wrote-informational"></a>The "wrote-informational" signal</h3>
+<a class="indexterm" name="id377781"></a><pre class="programlisting">void        user_function                  (<a href="SoupMessage.html" title="SoupMessage">SoupMessage</a> *msg,
+                                            <a
+href="../glib/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run first</pre>
+<p>
+Emitted immediately after writing a 1xx (Informational)
+response for a message.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>msg</code></em>&#160;:</span></td>
+<td> the message
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

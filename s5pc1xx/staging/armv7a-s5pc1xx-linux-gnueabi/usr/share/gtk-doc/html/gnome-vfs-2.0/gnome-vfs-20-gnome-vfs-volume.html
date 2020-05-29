@@ -1,0 +1,1354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>GnomeVFSVolume</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="up" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="prev" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="next" href="gnome-vfs-20-gnome-vfs-drive.html" title="GnomeVFSDrive">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="about.html" title="Introduction to GnomeVFS">
+<link rel="chapter" href="data-types.html" title="Basic Data Types">
+<link rel="chapter" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<link rel="chapter" href="gnome-vfs-directory-ops.html" title="Directory-Specific Operations">
+<link rel="chapter" href="gnome-vfs-file-and-dirs-ops.html" title="Advanced File/Directory Operations">
+<link rel="chapter" href="gnome-vfs-file-async-ops.html" title="Asynchronous Operations">
+<link rel="chapter" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="chapter" href="networking.html" title="Networking">
+<link rel="chapter" href="mime-registry.html" title="MIME Registry">
+<link rel="chapter" href="modules.html" title="Filesystem Modules">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="volumes.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="volumes.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GnomeVFS - Filesystem Abstraction library</th>
+<td><a accesskey="n" href="gnome-vfs-20-gnome-vfs-drive.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2649984" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2650714" class="shortcut">Description</a>
+                  &#160;|&#160;
+                  <a href="#id2650689" class="shortcut">Object Hierarchy</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-vfs-20-gnome-vfs-volume"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2649984"></a><span class="refentrytitle">GnomeVFSVolume</span>
+</h2>
+<p>GnomeVFSVolume &#8212; Abstraction for a mounted file system or a network location.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<a name="GnomeVFSVolume"></a><pre class="synopsis">
+
+
+
+#define             <a href="gnome-vfs-20-gnome-vfs-volume.html#GNOME-IS-VFS-VOLUME:CAPS">GNOME_IS_VFS_VOLUME</a>                 (o)
+#define             <a href="gnome-vfs-20-gnome-vfs-volume.html#GNOME-IS-VFS-VOLUME-CLASS:CAPS">GNOME_IS_VFS_VOLUME_CLASS</a>           (k)
+#define             <a href="gnome-vfs-20-gnome-vfs-volume.html#GNOME-VFS-TYPE-VOLUME:CAPS">GNOME_VFS_TYPE_VOLUME</a>
+#define             <a href="gnome-vfs-20-gnome-vfs-volume.html#GNOME-VFS-VOLUME:CAPS">GNOME_VFS_VOLUME</a>                    (o)
+#define             <a href="gnome-vfs-20-gnome-vfs-volume.html#GNOME-VFS-VOLUME-CLASS:CAPS">GNOME_VFS_VOLUME_CLASS</a>              (k)
+                    <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume-struct">GnomeVFSVolume</a>;
+                    <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeClass">GnomeVFSVolumeClass</a>;
+void                (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback">*GnomeVFSVolumeOpCallback</a>)         (gboolean succeeded,
+                                                         char *error,
+                                                         char *detailed_error,
+                                                         gpointer user_data);
+enum                <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeType">GnomeVFSVolumeType</a>;
+gint                <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-compare">gnome_vfs_volume_compare</a>            (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *a,
+                                                         <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *b);
+void                <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-eject">gnome_vfs_volume_eject</a>              (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume,
+                                                         <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback">GnomeVFSVolumeOpCallback</a> callback,
+                                                         gpointer user_data);
+char*               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-activation-uri">gnome_vfs_volume_get_activation_uri</a> (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+char*               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-device-path">gnome_vfs_volume_get_device_path</a>    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+<a href="gnome-vfs-20-gnome-vfs-drive.html#GnomeVFSDeviceType">GnomeVFSDeviceType</a>  <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-device-type">gnome_vfs_volume_get_device_type</a>    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+char*               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-display-name">gnome_vfs_volume_get_display_name</a>   (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+<a href="gnome-vfs-20-gnome-vfs-drive.html#GnomeVFSDrive">GnomeVFSDrive</a>*      <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-drive">gnome_vfs_volume_get_drive</a>          (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+char*               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-filesystem-type">gnome_vfs_volume_get_filesystem_type</a>
+                                                        (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+char*               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-hal-udi">gnome_vfs_volume_get_hal_udi</a>        (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+char*               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-icon">gnome_vfs_volume_get_icon</a>           (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+gulong              <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-id">gnome_vfs_volume_get_id</a>             (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+GType               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-type">gnome_vfs_volume_get_type</a>           (void);
+<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeType">GnomeVFSVolumeType</a>  <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-volume-type">gnome_vfs_volume_get_volume_type</a>    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-handles-trash">gnome_vfs_volume_handles_trash</a>      (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-is-mounted">gnome_vfs_volume_is_mounted</a>         (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-is-read-only">gnome_vfs_volume_is_read_only</a>       (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+gboolean            <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-is-user-visible">gnome_vfs_volume_is_user_visible</a>    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a>*     <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-ref">gnome_vfs_volume_ref</a>                (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+GType               <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-type-get-type">gnome_vfs_volume_type_get_type</a>      (void);
+void                <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-unmount">gnome_vfs_volume_unmount</a>            (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume,
+                                                         <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback">GnomeVFSVolumeOpCallback</a> callback,
+                                                         gpointer user_data);
+void                <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-unref">gnome_vfs_volume_unref</a>              (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);
+void                <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-connect-to-server">gnome_vfs_connect_to_server</a>         (const char *uri,
+                                                         const char *display_name,
+                                                         const char *icon);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2650689"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+
+  GObject
+   +----GnomeVFSVolume
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2650714"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2650729"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2650739"></a><h3>
+<a name="GNOME-IS-VFS-VOLUME:CAPS"></a>GNOME_IS_VFS_VOLUME()</h3>
+<a class="indexterm" name="id2650752"></a><pre class="programlisting">#define GNOME_IS_VFS_VOLUME(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), GNOME_VFS_TYPE_VOLUME))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>o</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2650786"></a><h3>
+<a name="GNOME-IS-VFS-VOLUME-CLASS:CAPS"></a>GNOME_IS_VFS_VOLUME_CLASS()</h3>
+<a class="indexterm" name="id2650801"></a><pre class="programlisting">#define GNOME_IS_VFS_VOLUME_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), GNOME_VFS_TYPE_VOLUME))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>k</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2650835"></a><h3>
+<a name="GNOME-VFS-TYPE-VOLUME:CAPS"></a>GNOME_VFS_TYPE_VOLUME</h3>
+<a class="indexterm" name="id2650848"></a><pre class="programlisting">#define GNOME_VFS_TYPE_VOLUME        (gnome_vfs_volume_get_type ())
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2650864"></a><h3>
+<a name="GNOME-VFS-VOLUME:CAPS"></a>GNOME_VFS_VOLUME()</h3>
+<a class="indexterm" name="id2650878"></a><pre class="programlisting">#define GNOME_VFS_VOLUME(o)          (G_TYPE_CHECK_INSTANCE_CAST ((o), GNOME_VFS_TYPE_VOLUME, GnomeVFSVolume))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>o</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2650912"></a><h3>
+<a name="GNOME-VFS-VOLUME-CLASS:CAPS"></a>GNOME_VFS_VOLUME_CLASS()</h3>
+<a class="indexterm" name="id2650925"></a><pre class="programlisting">#define GNOME_VFS_VOLUME_CLASS(k)    (G_TYPE_CHECK_CLASS_CAST((k), GNOME_VFS_TYPE_VOLUME, GnomeVFSVolumeClass))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>k</code></em>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2650959"></a><h3>
+<a name="GnomeVFSVolume-struct"></a>GnomeVFSVolume</h3>
+<a class="indexterm" name="id2650973"></a><pre class="programlisting">typedef struct _GnomeVFSVolume GnomeVFSVolume;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2650988"></a><h3>
+<a name="GnomeVFSVolumeClass"></a>GnomeVFSVolumeClass</h3>
+<a class="indexterm" name="id2651001"></a><pre class="programlisting">typedef struct {
+	GObjectClass parent_class;
+} GnomeVFSVolumeClass;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2651017"></a><h3>
+<a name="GnomeVFSVolumeOpCallback"></a>GnomeVFSVolumeOpCallback ()</h3>
+<a class="indexterm" name="id2651032"></a><pre class="programlisting">void                (*GnomeVFSVolumeOpCallback)         (gboolean succeeded,
+                                                         char *error,
+                                                         char *detailed_error,
+                                                         gpointer user_data);</pre>
+<p>
+Note that if succeeded is FALSE and error, detailed_error are both
+empty strings the client is not supposed to display a dialog as an
+external mount/umount/eject helper will have done so.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>succeeded</code></em>&#160;:</span></td>
+<td> whether the volume operation succeeded
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>error</code></em>&#160;:</span></td>
+<td> a string identifying the error that occurred, if
+<em class="parameter"><code>succeeded</code></em> is <code class="literal">FALSE</code>. Otherwise <code class="literal">NULL</code>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>detailed_error</code></em>&#160;:</span></td>
+<td> a string more specifically identifying
+the error that occurred, if <em class="parameter"><code>succeeded</code></em> is <code class="literal">FALSE</code>.
+Otherwise <code class="literal">NULL</code>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> the user data that was passed when registering
+the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2651213"></a><h3>
+<a name="GnomeVFSVolumeType"></a>enum GnomeVFSVolumeType</h3>
+<a class="indexterm" name="id2651227"></a><pre class="programlisting">typedef enum {
+	GNOME_VFS_VOLUME_TYPE_MOUNTPOINT,
+	GNOME_VFS_VOLUME_TYPE_VFS_MOUNT,
+	GNOME_VFS_VOLUME_TYPE_CONNECTED_SERVER
+} GnomeVFSVolumeType;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2651244"></a><h3>
+<a name="gnome-vfs-volume-compare"></a>gnome_vfs_volume_compare ()</h3>
+<a class="indexterm" name="id2651259"></a><pre class="programlisting">gint                gnome_vfs_volume_compare            (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *a,
+                                                         <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *b);</pre>
+<p>
+Compares two <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a> objects <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em>. Two
+<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a> objects referring to different volumes
+are guaranteed to not return 0 when comparing them,
+if they refer to the same volume 0 is returned.
+</p>
+<p>
+The resulting <span class="type">gint</span> should be used to determine the
+order in which <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> are displayed in graphical
+user interfces.
+</p>
+<p>
+The comparison algorithm first of all peeks the device
+type of <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em>, they will be sorted in the following
+order:
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>Magnetic and opto-magnetic volumes (ZIP, floppy)</p></li>
+<li><p>Optical volumes (CD, DVD)</p></li>
+<li><p>External volumes (USB sticks, music players)</p></li>
+<li><p>Mounted hard disks</p></li>
+<li><p>Network mounts</p></li>
+<li><p>Other volumes</p></li>
+</ul></div>
+<p>
+</p>
+<p>
+Afterwards, the display name of <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> is compared
+using a locale-sensitive sorting algorithm, which
+involves <code class="function">g_utf8_collate_key()</code>.
+</p>
+<p>
+If two volumes have the same display name, their
+unique ID is compared which can be queried using
+<a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-id"><code class="function">gnome_vfs_volume_get_id()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>a</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>b</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> 0 if the volumes refer to the same <em class="parameter"><code>GnomeVFSVolume</code></em>,
+a negative value if <em class="parameter"><code>a</code></em> should be displayed before <em class="parameter"><code>b</code></em>,
+or a positive value if <em class="parameter"><code>a</code></em> should be displayed after <em class="parameter"><code>b</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2651542"></a><h3>
+<a name="gnome-vfs-volume-eject"></a>gnome_vfs_volume_eject ()</h3>
+<a class="indexterm" name="id2651558"></a><pre class="programlisting">void                gnome_vfs_volume_eject              (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume,
+                                                         <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback">GnomeVFSVolumeOpCallback</a> callback,
+                                                         gpointer user_data);</pre>
+<p>
+Requests ejection of a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</p>
+<p>
+Before the unmount operation is executed, the
+<span class="type">GnomeVFSVolume::pre-unmount</span> signal is emitted.
+</p>
+<p>
+If the <em class="parameter"><code>volume</code></em> is a mount point (its type is
+<span class="type">GNOME_VFS_VOLUME_TYPE_MOUNTPOINT</span>), it is unmounted,
+and if it refers to a disc, it is also ejected.
+</p>
+<p>
+If the <em class="parameter"><code>volume</code></em> is a special VFS mount, i.e.
+its type is <span class="type">GNOME_VFS_VOLUME_TYPE_VFS_MOUNT</span>, it
+is ejected.
+</p>
+<p>
+If the <em class="parameter"><code>volume</code></em> is a connected server, it
+is removed from the list of connected servers.
+</p>
+<p>
+Otherwise, no further action is done.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> the <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a> that should be ejected.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>callback</code></em>&#160;:</span></td>
+<td> the <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback"><span class="type">GnomeVFSVolumeOpCallback</span></a> that should be invoked after ejecting of <em class="parameter"><code>volume</code></em>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> the user data to pass to <em class="parameter"><code>callback</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2651769"></a><h3>
+<a name="gnome-vfs-volume-get-activation-uri"></a>gnome_vfs_volume_get_activation_uri ()</h3>
+<a class="indexterm" name="id2651785"></a><pre class="programlisting">char*               gnome_vfs_volume_get_activation_uri (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the activation URI of a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</p>
+<p>
+The returned URI usually refers to a valid location. You can check the
+validity of the location by calling <a href="gnome-vfs-20-gnome-vfs-uri.html#gnome-vfs-uri-new"><code class="function">gnome_vfs_uri_new()</code></a> with the URI,
+and checking whether the return value is not <code class="literal">NULL</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated string for activation uri of <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2651902"></a><h3>
+<a name="gnome-vfs-volume-get-device-path"></a>gnome_vfs_volume_get_device_path ()</h3>
+<a class="indexterm" name="id2651917"></a><pre class="programlisting">char*               gnome_vfs_volume_get_device_path    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the device path of a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</p>
+<p>
+For HAL volumes, this returns the value of the
+volume's "block.device" key. For UNIX mounts,
+it returns the <code class="literal">mntent</code>'s <code class="literal">mnt_fsname</code> entry.
+</p>
+<p>
+Otherwise, it returns <code class="literal">NULL</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated string for device path of <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2652049"></a><h3>
+<a name="gnome-vfs-volume-get-device-type"></a>gnome_vfs_volume_get_device_type ()</h3>
+<a class="indexterm" name="id2652065"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-drive.html#GnomeVFSDeviceType">GnomeVFSDeviceType</a>  gnome_vfs_volume_get_device_type    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the <a href="gnome-vfs-20-gnome-vfs-drive.html#GnomeVFSDeviceType"><span class="type">GnomeVFSDeviceType</span></a> of the <em class="parameter"><code>volume</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the device type for <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2652161"></a><h3>
+<a name="gnome-vfs-volume-get-display-name"></a>gnome_vfs_volume_get_display_name ()</h3>
+<a class="indexterm" name="id2652178"></a><pre class="programlisting">char*               gnome_vfs_volume_get_display_name   (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the display name of the <em class="parameter"><code>volume</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated string for display name of <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2652265"></a><h3>
+<a name="gnome-vfs-volume-get-drive"></a>gnome_vfs_volume_get_drive ()</h3>
+<a class="indexterm" name="id2652281"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-drive.html#GnomeVFSDrive">GnomeVFSDrive</a>*      gnome_vfs_volume_get_drive          (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the drive for the <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2652362"></a><h3>
+<a name="gnome-vfs-volume-get-filesystem-type"></a>gnome_vfs_volume_get_filesystem_type ()</h3>
+<a class="indexterm" name="id2652378"></a><pre class="programlisting">char*               gnome_vfs_volume_get_filesystem_type
+                                                        (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns a string describing the file system on <em class="parameter"><code>volume</code></em>,
+or <code class="literal">NULL</code> if no information on the underlying file system is
+available.
+</p>
+<p>
+The file system may be used to provide special functionality
+that depends on the file system type, for instance to determine
+whether trashing is supported (cf. <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-handles-trash"><code class="function">gnome_vfs_volume_handles_trash()</code></a>).
+</p>
+<p>
+For HAL mounts, this returns the value of the "volume.fstype"
+key, for traditional UNIX mounts it is set to the <code class="literal">mntent</code>'s 
+<code class="literal">mnt_type</code> key, for connected servers, <code class="literal">NULL</code> is returned.
+</p>
+<p>
+As of GnomeVFS 2.15.4, the following file systems are recognized
+by GnomeVFS:
+</p>
+<p>
+</p>
+<div class="table">
+<a name="id2652490"></a><p class="title"><b>Table&#160;3.&#160;Recognized File Systems</b></p>
+<div class="table-contents"><table summary="Recognized File Systems" border="0">
+<colgroup>
+<col align="left">
+<col align="left">
+<col align="left">
+</colgroup>
+<thead><tr>
+<th align="left">File System</th>
+<th align="left">Display Name</th>
+<th align="left">Supports Trash</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left">affs</td>
+<td align="left">AFFS Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">afs</td>
+<td align="left">AFS Network Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">auto</td>
+<td align="left">Auto-detected Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">cd9660</td>
+<td align="left">CD-ROM Drive</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">cdda</td>
+<td align="left">CD Digital Audio</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">cdrom</td>
+<td align="left">CD-ROM Drive</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">devfs</td>
+<td align="left">Hardware Device Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">encfs</td>
+<td align="left">EncFS Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">ext2</td>
+<td align="left">Ext2 Linux Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">ext2fs</td>
+<td align="left">Ext2 Linux Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">ext3</td>
+<td align="left">Ext3 Linux Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">fat</td>
+<td align="left">MSDOS Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">ffs</td>
+<td align="left">BSD Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">fuse</td>
+<td align="left">FUSE Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">hfs</td>
+<td align="left">MacOS Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">hfsplus</td>
+<td align="left">MacOS Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">iso9660</td>
+<td align="left">CDROM Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">hsfs</td>
+<td align="left">Hsfs CDROM Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">jfs</td>
+<td align="left">JFS Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">hpfs</td>
+<td align="left">Windows NT Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">kernfs</td>
+<td align="left">System Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">lfs</td>
+<td align="left">BSD Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">linprocfs</td>
+<td align="left">System Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">mfs</td>
+<td align="left">Memory Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">minix</td>
+<td align="left">Minix Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">msdos</td>
+<td align="left">MSDOS Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">msdosfs</td>
+<td align="left">MSDOS Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">nfs</td>
+<td align="left">NFS Network Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">ntfs</td>
+<td align="left">Windows NT Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">nwfs</td>
+<td align="left">Netware Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">proc</td>
+<td align="left">System Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">procfs</td>
+<td align="left">System Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">ptyfs</td>
+<td align="left">System Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">reiser4</td>
+<td align="left">Reiser4 Linux Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">reiserfs</td>
+<td align="left">ReiserFS Linux Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">smbfs</td>
+<td align="left">Windows Shared Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">supermount</td>
+<td align="left">SuperMount Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">udf</td>
+<td align="left">DVD Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">ufs</td>
+<td align="left">Solaris/BSD Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">udfs</td>
+<td align="left">Udfs Solaris Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">pcfs</td>
+<td align="left">Pcfs Solaris Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">samfs</td>
+<td align="left">Sun SAM-QFS Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">tmpfs</td>
+<td align="left">Temporary Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">umsdos</td>
+<td align="left">Enhanced DOS Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">vfat</td>
+<td align="left">Windows VFAT Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">xenix</td>
+<td align="left">Xenix Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">xfs</td>
+<td align="left">XFS Linux Volume</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">xiafs</td>
+<td align="left">XIAFS Volume</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">cifs</td>
+<td align="left">CIFS Volume</td>
+<td align="left">Yes</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p><br class="table-break"></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated string for filesystem type of <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653043"></a><h3>
+<a name="gnome-vfs-volume-get-hal-udi"></a>gnome_vfs_volume_get_hal_udi ()</h3>
+<a class="indexterm" name="id2653059"></a><pre class="programlisting">char*               gnome_vfs_volume_get_hal_udi        (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the HAL UDI of a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</p>
+<p>
+For HAL volumes, this matches the value of the "info.udi" key,
+for other volumes it is <code class="literal">NULL</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated string for unique device id of <em class="parameter"><code>volume</code></em>, or <code class="literal">NULL</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653174"></a><h3>
+<a name="gnome-vfs-volume-get-icon"></a>gnome_vfs_volume_get_icon ()</h3>
+<a class="indexterm" name="id2653190"></a><pre class="programlisting">char*               gnome_vfs_volume_get_icon           (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated string for the icon filename of <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653271"></a><h3>
+<a name="gnome-vfs-volume-get-id"></a>gnome_vfs_volume_get_id ()</h3>
+<a class="indexterm" name="id2653287"></a><pre class="programlisting">gulong              gnome_vfs_volume_get_id             (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the ID of the <em class="parameter"><code>volume</code></em>,
+</p>
+<p>
+Two <span class="type">GnomeVFSVolumes</span> are guaranteed to refer
+to the same volume if they have the same ID.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the id for the <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653388"></a><h3>
+<a name="gnome-vfs-volume-get-type"></a>gnome_vfs_volume_get_type ()</h3>
+<a class="indexterm" name="id2653402"></a><pre class="programlisting">GType               gnome_vfs_volume_get_type           (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653437"></a><h3>
+<a name="gnome-vfs-volume-get-volume-type"></a>gnome_vfs_volume_get_volume_type ()</h3>
+<a class="indexterm" name="id2653453"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeType">GnomeVFSVolumeType</a>  gnome_vfs_volume_get_volume_type    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns the <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeType"><span class="type">GnomeVFSVolumeType</span></a> of the <em class="parameter"><code>volume</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the volume type for <em class="parameter"><code>volume</code></em>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653549"></a><h3>
+<a name="gnome-vfs-volume-handles-trash"></a>gnome_vfs_volume_handles_trash ()</h3>
+<a class="indexterm" name="id2653565"></a><pre class="programlisting">gboolean            gnome_vfs_volume_handles_trash      (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns whether the file system on a <em class="parameter"><code>volume</code></em> supports trashing of files.
+</p>
+<p>
+If the <em class="parameter"><code>volume</code></em> has an AutoFS file system (i.e. <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-device-type"><code class="function">gnome_vfs_volume_get_device_type()</code></a>
+returns <a href="gnome-vfs-20-gnome-vfs-drive.html#GNOME-VFS-DEVICE-TYPE-AUTOFS:CAPS"><span class="type">GNOME_VFS_DEVICE_TYPE_AUTOFS</span></a>), or if the <em class="parameter"><code>volume</code></em> is mounted read-only
+(<a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-is-read-only"><code class="function">gnome_vfs_volume_is_read_only()</code></a> returns <code class="literal">TRUE</code>), it is assumed
+to not support trashing of files.
+</p>
+<p>
+Otherwise, if the <em class="parameter"><code>volume</code></em> provides file system information, it is
+determined whether the file system supports trashing of files.
+See <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-get-filesystem-type"><code class="function">gnome_vfs_volume_get_filesystem_type()</code></a> for details which
+volumes provide file system information, and which file systems
+currently support a trash.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if <em class="parameter"><code>volume</code></em> handles trash, <code class="literal">FALSE</code> otherwise.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653759"></a><h3>
+<a name="gnome-vfs-volume-is-mounted"></a>gnome_vfs_volume_is_mounted ()</h3>
+<a class="indexterm" name="id2653775"></a><pre class="programlisting">gboolean            gnome_vfs_volume_is_mounted         (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns whether the file system on a <em class="parameter"><code>volume</code></em> is currently mounted.
+</p>
+<p>
+For HAL volumes, this reflects the value of the "volume.is_mounted"
+key, for traditional UNIX mounts and connected servers, <code class="literal">TRUE</code>
+is returned, because their existence implies that they are
+mounted.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if the <em class="parameter"><code>volume</code></em> is mounted, <code class="literal">FALSE</code> otherwise.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2653900"></a><h3>
+<a name="gnome-vfs-volume-is-read-only"></a>gnome_vfs_volume_is_read_only ()</h3>
+<a class="indexterm" name="id2653916"></a><pre class="programlisting">gboolean            gnome_vfs_volume_is_read_only       (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns whether the file system on a <em class="parameter"><code>volume</code></em> is read-only.
+</p>
+<p>
+For HAL volumes, the "volume.is_mounted_read_only" key
+is authoritative, for traditional UNIX mounts it returns
+<code class="literal">TRUE</code> if the mount was done with the "ro" option.
+For servers, <code class="literal">FALSE</code> is returned.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if the <em class="parameter"><code>volume</code></em> is read-only to the user, <code class="literal">FALSE</code> otherwise.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2654051"></a><h3>
+<a name="gnome-vfs-volume-is-user-visible"></a>gnome_vfs_volume_is_user_visible ()</h3>
+<a class="indexterm" name="id2654067"></a><pre class="programlisting">gboolean            gnome_vfs_volume_is_user_visible    (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Returns whether the <em class="parameter"><code>volume</code></em> is visible to the user. This
+should be used by applications to determine whether it
+is included in user interfaces listing available volumes.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if <em class="parameter"><code>volume</code></em> is visible to the user, <code class="literal">FALSE</code> otherwise.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2654177"></a><h3>
+<a name="gnome-vfs-volume-ref"></a>gnome_vfs_volume_ref ()</h3>
+<a class="indexterm" name="id2654193"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a>*     gnome_vfs_volume_ref                (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Increases the refcount of the <em class="parameter"><code>volume</code></em> by 1, if it is not <code class="literal">NULL</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>, or <code class="literal">NULL</code>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> the <em class="parameter"><code>volume</code></em> with its refcount increased by one,
+	    or <code class="literal">NULL</code> if <em class="parameter"><code>volume</code></em> is NULL.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2654318"></a><h3>
+<a name="gnome-vfs-volume-type-get-type"></a>gnome_vfs_volume_type_get_type ()</h3>
+<a class="indexterm" name="id2654332"></a><pre class="programlisting">GType               gnome_vfs_volume_type_get_type      (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2654368"></a><h3>
+<a name="gnome-vfs-volume-unmount"></a>gnome_vfs_volume_unmount ()</h3>
+<a class="indexterm" name="id2654384"></a><pre class="programlisting">void                gnome_vfs_volume_unmount            (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume,
+                                                         <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback">GnomeVFSVolumeOpCallback</a> callback,
+                                                         gpointer user_data);</pre>
+<p>
+Note that <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-unmount"><code class="function">gnome_vfs_volume_unmount()</code></a> may also invoke <a href="gnome-vfs-20-gnome-vfs-volume.html#gnome-vfs-volume-eject"><code class="function">gnome_vfs_volume_eject()</code></a>,
+if the <em class="parameter"><code>volume</code></em> signals that it should be ejected when it is unmounted.
+This may be true for CD-ROMs, USB sticks and other devices, depending on the
+backend providing the <em class="parameter"><code>volume</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> the <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a> that should be unmounted.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>callback</code></em>&#160;:</span></td>
+<td> the <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolumeOpCallback"><span class="type">GnomeVFSVolumeOpCallback</span></a> that should be invoked after unmounting <em class="parameter"><code>volume</code></em>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>user_data</code></em>&#160;:</span></td>
+<td> the user data to pass to <em class="parameter"><code>callback</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2654551"></a><h3>
+<a name="gnome-vfs-volume-unref"></a>gnome_vfs_volume_unref ()</h3>
+<a class="indexterm" name="id2654567"></a><pre class="programlisting">void                gnome_vfs_volume_unref              (<a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume">GnomeVFSVolume</a> *volume);</pre>
+<p>
+Decreases the refcount of the <em class="parameter"><code>volume</code></em> by 1, if it is not <code class="literal">NULL</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><em class="parameter"><code>volume</code></em>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-volume.html#GnomeVFSVolume"><span class="type">GnomeVFSVolume</span></a>, or <code class="literal">NULL</code>.
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2654659"></a><h3>
+<a name="gnome-vfs-connect-to-server"></a>gnome_vfs_connect_to_server ()</h3>
+<a class="indexterm" name="id2654675"></a><pre class="programlisting">void                gnome_vfs_connect_to_server         (const char *uri,
+                                                         const char *display_name,
+                                                         const char *icon);</pre>
+<p>
+This function adds a server connection to the specified <em class="parameter"><code>uri</code></em>, which is displayed
+in user interfaces with the specified <em class="parameter"><code>display_name</code></em> and <em class="parameter"><code>icon</code></em>.
+</p>
+<p>
+If this function is invoked successfully, the created server shows up in the
+list of mounted volumes of the <a href="gnome-vfs-20-gnome-vfs-volume-monitor.html#GnomeVFSVolumeMonitor"><span class="type">GnomeVFSVolumeMonitor</span></a>, which can be queried
+using <a href="gnome-vfs-20-gnome-vfs-volume-monitor.html#gnome-vfs-volume-monitor-get-mounted-volumes"><code class="function">gnome_vfs_volume_monitor_get_mounted_volumes()</code></a>.
+</p>
+<p>
+</p>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>
+This function does not have a return value. Hence, you can't easily detect
+whether the specified server was successfully created. The actual creation and
+consumption of the new server through the <a href="gnome-vfs-20-gnome-vfs-volume-monitor.html#GnomeVFSVolumeMonitor"><span class="type">GnomeVFSVolumeMonitor</span></a> is done
+asynchronously.
+</p>
+<p>
+<em class="parameter"><code>uri</code></em>, <em class="parameter"><code>display_name</code></em>, and <em class="parameter"><code>icon</code></em> can be freely chosen, but should be meaningful:
+</p>
+<p>
+<em class="parameter"><code>uri</code></em> should refer to a valid location. You can check the validity of the
+location by calling <a href="gnome-vfs-20-gnome-vfs-uri.html#gnome-vfs-uri-new"><code class="function">gnome_vfs_uri_new()</code></a> with <em class="parameter"><code>uri</code></em>, and checking whether
+the return value is not <code class="literal">NULL</code>.
+</p>
+<p>
+The <em class="parameter"><code>display_name</code></em> should be queried from the user, and an empty string
+should not be considered valid.
+</p>
+<p>
+<em class="parameter"><code>icon</code></em> typically references an icon from the icon theme. Some
+implementations currently use <code class="literal">gnome-fs-smb</code>,
+<code class="literal">gnome-fs-ssh</code>, <code class="literal">gnome-fs-ftp</code> and
+<code class="literal">gnome-fs-share</code>, depending on the type of the server
+referenced by <em class="parameter"><code>uri</code></em>. The icon naming conventions might change in the
+future, though. Obeying the <a href="http://standards.freedesktop.org/icon-naming-spec/icon-naming-spec-latest.html" target="_top">
+freedesktop.org Icon Naming Specification</a> is suggested.
+</p>
+</div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>uri</code></em>&#160;:</span></td>
+<td> The string representation of the server to connect to.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>display_name</code></em>&#160;:</span></td>
+<td> The display name that is used to identify the server connection.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>icon</code></em>&#160;:</span></td>
+<td> The icon that is used to identify the server connection.
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.6
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include/qt4/QtNetwork
+qt_config=lex yacc warn_on uic resources qt warn_on release incremental link_prl exceptions no_mocdepend release stl qt_no_framework release shared dll largefile stl dylib create_prl link_prl depend_includepath QTDIR_build qt_install_headers qt warn_on depend_includepath qmake_cache target_qt create_libtool create_pc explicitlib moc thread shared dll
+
+
+
+Name: Qtnetwork
+Description: Qtnetwork Library
+Version: 4.4.3
+Libs: -L${libdir} -lQtNetwork    -lQtCore   -lz -lm -pthread -lgthread-2.0 -lrt -lglib-2.0 -lpthread -ldl  
+Cflags: -DQT_SHARED -I/usr/include/qt4 -I${includedir}
+

@@ -1,0 +1,8 @@
+cairo-ps
+cairo
+cairo-pdf
+cairo-svg
+cairo-ft
+cairo-png
+cairo-xlib-xrender
+cairo-xlib

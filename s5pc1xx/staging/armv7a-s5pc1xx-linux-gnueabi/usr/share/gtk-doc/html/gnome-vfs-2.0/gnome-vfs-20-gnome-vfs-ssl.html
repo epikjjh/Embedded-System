@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>SSL support functions</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.72.0">
+<link rel="start" href="index.html" title="GnomeVFS - Filesystem Abstraction library">
+<link rel="up" href="networking.html" title="Networking">
+<link rel="prev" href="gnome-vfs-20-gnome-vfs-resolve.html" title="DNS Resolution">
+<link rel="next" href="gnome-vfs-20-gnome-vfs-socket.html" title="Unified network I/O">
+<meta name="generator" content="GTK-Doc V1.8 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="about.html" title="Introduction to GnomeVFS">
+<link rel="chapter" href="data-types.html" title="Basic Data Types">
+<link rel="chapter" href="gnome-vfs-basic-file-ops.html" title="File Operations">
+<link rel="chapter" href="gnome-vfs-directory-ops.html" title="Directory-Specific Operations">
+<link rel="chapter" href="gnome-vfs-file-and-dirs-ops.html" title="Advanced File/Directory Operations">
+<link rel="chapter" href="gnome-vfs-file-async-ops.html" title="Asynchronous Operations">
+<link rel="chapter" href="volumes.html" title="Volumes and Drives Handling">
+<link rel="chapter" href="networking.html" title="Networking">
+<link rel="chapter" href="mime-registry.html" title="MIME Registry">
+<link rel="chapter" href="modules.html" title="Filesystem Modules">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-vfs-20-gnome-vfs-resolve.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="networking.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GnomeVFS - Filesystem Abstraction library</th>
+<td><a accesskey="n" href="gnome-vfs-20-gnome-vfs-socket.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2684497" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2684832" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="gnome-vfs-20-gnome-vfs-ssl"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2684497"></a><span class="refentrytitle">SSL support functions</span>
+</h2>
+<p>SSL support functions &#8212; Functions to send and receive encrypted data over a socket.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+typedef             <a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a>;
+gboolean            <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-enabled">gnome_vfs_ssl_enabled</a>               (void);
+<a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-create">gnome_vfs_ssl_create</a>                (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> **handle_return,
+                                                         const char *host,
+                                                         unsigned int port,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);
+<a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-create-from-fd">gnome_vfs_ssl_create_from_fd</a>        (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> **handle_return,
+                                                         gint fd,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);
+<a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-read">gnome_vfs_ssl_read</a>                  (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         gpointer buffer,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> bytes,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> *bytes_read,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);
+<a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-write">gnome_vfs_ssl_write</a>                 (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         gconstpointer buffer,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> bytes,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> *bytes_written,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);
+void                <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-destroy">gnome_vfs_ssl_destroy</a>               (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);
+<a href="gnome-vfs-20-gnome-vfs-socket.html#GnomeVFSSocket">GnomeVFSSocket</a>*     <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-to-socket">gnome_vfs_ssl_to_socket</a>             (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl);
+<a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      <a href="gnome-vfs-20-gnome-vfs-ssl.html#gnome-vfs-ssl-set-timeout">gnome_vfs_ssl_set_timeout</a>           (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         GTimeVal *timeout,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2684832"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2684847"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2684857"></a><h3>
+<a name="GnomeVFSSSL"></a>GnomeVFSSSL</h3>
+<a class="indexterm" name="id2684869"></a><pre class="programlisting">typedef struct GnomeVFSSSL GnomeVFSSSL;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2684884"></a><h3>
+<a name="gnome-vfs-ssl-enabled"></a>gnome_vfs_ssl_enabled ()</h3>
+<a class="indexterm" name="id2684898"></a><pre class="programlisting">gboolean            gnome_vfs_ssl_enabled               (void);</pre>
+<p>
+Checks whether gnome-vfs was compiled with SSL support.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <code class="literal">TRUE</code> if gnome-vfs was compiled with SSL support,
+otherwise <code class="literal">FALSE</code>.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2684959"></a><h3>
+<a name="gnome-vfs-ssl-create"></a>gnome_vfs_ssl_create ()</h3>
+<a class="indexterm" name="id2684972"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      gnome_vfs_ssl_create                (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> **handle_return,
+                                                         const char *host,
+                                                         unsigned int port,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);</pre>
+<p>
+Creates an SSL socket connection at <em class="parameter"><code>handle_return</code></em> to <em class="parameter"><code>host</code></em> using
+port <em class="parameter"><code>port</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>handle_return</code></em>&#160;:</span></td>
+<td> pointer to a <a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL"><span class="type">GnomeVFSSSL</span></a> struct, which will
+contain an allocated <a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL"><span class="type">GnomeVFSSSL</span></a> object on return.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>host</code></em>&#160;:</span></td>
+<td> string indicating the hostname to establish an SSL connection with.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>port</code></em>&#160;:</span></td>
+<td> port number to connect to.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>cancellation</code></em>&#160;:</span></td>
+<td> handle allowing cancellation of the operation.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult"><span class="type">GnomeVFSResult</span></a> indicating the success of the operation.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2685145"></a><h3>
+<a name="gnome-vfs-ssl-create-from-fd"></a>gnome_vfs_ssl_create_from_fd ()</h3>
+<a class="indexterm" name="id2685158"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      gnome_vfs_ssl_create_from_fd        (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> **handle_return,
+                                                         gint fd,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);</pre>
+<p>
+Try to establish an SSL connection over the file descriptor <em class="parameter"><code>fd</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>handle_return</code></em>&#160;:</span></td>
+<td> pointer to a <a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL"><span class="type">GnomeVFSSSL</span></a> struct, which will
+contain an allocated <a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL"><span class="type">GnomeVFSSSL</span></a> object on return.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>fd</code></em>&#160;:</span></td>
+<td> file descriptior to try and establish an SSL connection over.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>cancellation</code></em>&#160;:</span></td>
+<td> handle allowing cancellation of the operation.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a <a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult"><span class="type">GnomeVFSResult</span></a> indicating the success of the operation.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2685297"></a><h3>
+<a name="gnome-vfs-ssl-read"></a>gnome_vfs_ssl_read ()</h3>
+<a class="indexterm" name="id2685310"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      gnome_vfs_ssl_read                  (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         gpointer buffer,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> bytes,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> *bytes_read,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);</pre>
+<p>
+Read <em class="parameter"><code>bytes</code></em> bytes of data from the SSL socket <em class="parameter"><code>ssl</code></em> into <em class="parameter"><code>buffer</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>ssl</code></em>&#160;:</span></td>
+<td> SSL socket to read data from.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>buffer</code></em>&#160;:</span></td>
+<td> allocated buffer of at least <em class="parameter"><code>bytes</code></em> bytes to write into.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>bytes</code></em>&#160;:</span></td>
+<td> number of bytes to read from <em class="parameter"><code>ssl</code></em> into <em class="parameter"><code>buffer</code></em>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>bytes_read</code></em>&#160;:</span></td>
+<td> pointer to a <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize"><span class="type">GnomeVFSFileSize</span></a>, will contain
+the number of bytes actually read from the socket <em class="parameter"><code>ssl</code></em> on return.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>cancellation</code></em>&#160;:</span></td>
+<td> handle allowing cancellation of the operation.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult"><span class="type">GnomeVFSResult</span></a> indicating the success of the operation.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2685520"></a><h3>
+<a name="gnome-vfs-ssl-write"></a>gnome_vfs_ssl_write ()</h3>
+<a class="indexterm" name="id2685533"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      gnome_vfs_ssl_write                 (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         gconstpointer buffer,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> bytes,
+                                                         <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize">GnomeVFSFileSize</a> *bytes_written,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);</pre>
+<p>
+Write <em class="parameter"><code>bytes</code></em> bytes of data from <em class="parameter"><code>buffer</code></em> to <em class="parameter"><code>ssl</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>ssl</code></em>&#160;:</span></td>
+<td> SSL socket to write data to.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>buffer</code></em>&#160;:</span></td>
+<td> data to write to the socket.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>bytes</code></em>&#160;:</span></td>
+<td> number of bytes to write from <em class="parameter"><code>buffer</code></em> to <em class="parameter"><code>ssl</code></em>.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>bytes_written</code></em>&#160;:</span></td>
+<td> pointer to a <a href="gnome-vfs-20-gnome-vfs-file-size.html#GnomeVFSFileSize"><span class="type">GnomeVFSFileSize</span></a>, will contain
+the number of bytes actually written to the socket on return.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>cancellation</code></em>&#160;:</span></td>
+<td> handle allowing cancellation of the operation.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult"><span class="type">GnomeVFSResult</span></a> indicating the success of the operation.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2685732"></a><h3>
+<a name="gnome-vfs-ssl-destroy"></a>gnome_vfs_ssl_destroy ()</h3>
+<a class="indexterm" name="id2685745"></a><pre class="programlisting">void                gnome_vfs_ssl_destroy               (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);</pre>
+<p>
+Free resources used by <em class="parameter"><code>ssl</code></em> and close the connection.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>ssl</code></em>&#160;:</span></td>
+<td> SSL socket to be closed and destroyed.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>cancellation</code></em>&#160;:</span></td>
+<td> handle allowing cancellation of the operation.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2685825"></a><h3>
+<a name="gnome-vfs-ssl-to-socket"></a>gnome_vfs_ssl_to_socket ()</h3>
+<a class="indexterm" name="id2685838"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-socket.html#GnomeVFSSocket">GnomeVFSSocket</a>*     gnome_vfs_ssl_to_socket             (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl);</pre>
+<p>
+Wrap an SSL socket inside a standard <a href="gnome-vfs-20-gnome-vfs-socket.html#GnomeVFSSocket"><span class="type">GnomeVFSSocket</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>ssl</code></em>&#160;:</span></td>
+<td> SSL socket to convert into a standard socket.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> a newly allocated <a href="gnome-vfs-20-gnome-vfs-socket.html#GnomeVFSSocket"><span class="type">GnomeVFSSocket</span></a> corresponding to <em class="parameter"><code>ssl</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2685922"></a><h3>
+<a name="gnome-vfs-ssl-set-timeout"></a>gnome_vfs_ssl_set_timeout ()</h3>
+<a class="indexterm" name="id2685938"></a><pre class="programlisting"><a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult">GnomeVFSResult</a>      gnome_vfs_ssl_set_timeout           (<a href="gnome-vfs-20-gnome-vfs-ssl.html#GnomeVFSSSL">GnomeVFSSSL</a> *ssl,
+                                                         GTimeVal *timeout,
+                                                         <a href="gnome-vfs-20-gnome-vfs-async-ops.html#GnomeVFSCancellation">GnomeVFSCancellation</a> *cancellation);</pre>
+<p>
+Set a timeout of <em class="parameter"><code>timeout</code></em>. If <em class="parameter"><code>timeout</code></em> is <code class="literal">NULL</code> following operations
+will block indefinitely).
+</p>
+<p>
+Note if you set <em class="parameter"><code>timeout</code></em> to 0 (means tv_sec and tv_usec are both 0)
+every following operation will return immediately. (This can be used
+for polling.)</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><span class="term"><em class="parameter"><code>ssl</code></em>&#160;:</span></td>
+<td> SSL socket to set the timeout of.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>timeout</code></em>&#160;:</span></td>
+<td> the timeout.
+</td>
+</tr>
+<tr>
+<td><span class="term"><em class="parameter"><code>cancellation</code></em>&#160;:</span></td>
+<td> optional cancellation object.
+</td>
+</tr>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span>&#160;:</span></td>
+<td> <a href="gnome-vfs-20-gnome-vfs-result.html#GnomeVFSResult"><span class="type">GnomeVFSResult</span></a> indicating the success of the operation.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  2.8
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

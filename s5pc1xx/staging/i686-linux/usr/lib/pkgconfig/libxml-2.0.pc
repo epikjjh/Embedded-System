@@ -1,0 +1,13 @@
+prefix=/opt/s5pc1xx/staging/i686-linux/usr
+exec_prefix=/opt/s5pc1xx/staging/i686-linux/usr
+libdir=/opt/s5pc1xx/staging/i686-linux/usr/lib
+includedir=/opt/s5pc1xx/staging/i686-linux/usr/include
+modules=1
+
+Name: libXML
+Version: 2.7.2
+Description: libXML library version2.
+Requires:
+Libs: -L${libdir} -lxml2
+Libs.private:  -lz  -lm 
+Cflags: -I${includedir}/libxml2 

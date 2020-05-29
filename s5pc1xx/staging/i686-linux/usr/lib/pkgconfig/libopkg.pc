@@ -1,0 +1,11 @@
+prefix=/opt/s5pc1xx/staging/i686-linux/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libopkg
+Description: opkg package manager library
+Version: 0.1.6
+Libs: -L${libdir} -lopkg
+Cflags: -I${includedir}/libopkg
+

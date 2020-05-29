@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib
+includedir=/usr/include
+SOUP_API_VERSION=2.2
+
+Name: libsoup
+Description: a glib-based HTTP library
+Version: 2.2.100
+Requires: glib-2.0 libxml-2.0 gnutls
+Libs: -L${libdir} -lsoup-${SOUP_API_VERSION}
+Cflags: -I${includedir}/libsoup-${SOUP_API_VERSION}

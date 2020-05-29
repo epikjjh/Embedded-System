@@ -1,0 +1,8 @@
+prefix=/opt/s5pc1xx/staging/i686-linux/usr
+
+Name: shared-mime-info
+Description: Freedesktop common MIME database
+Version: 0.51
+Requires:
+Libs:
+Cflags:

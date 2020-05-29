@@ -1,0 +1,10 @@
+prefix=/opt/s5pc1xx/staging/i686-linux/usr
+exec_prefix=/opt/s5pc1xx/staging/i686-linux/usr
+libdir=/opt/s5pc1xx/staging/i686-linux/usr/lib
+includedir=/opt/s5pc1xx/staging/i686-linux/usr/include
+
+Name: zlib
+Description: Standard (de)compression library
+Version: 1.2.3
+Libs: -L${libdir} -lz
+Cflags: -I${includedir}
